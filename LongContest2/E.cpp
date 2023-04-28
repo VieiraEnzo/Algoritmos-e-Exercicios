@@ -13,20 +13,19 @@ int main(){
         for(int i=0; i < size -1; i++){
             for(int j = i+1; j < size; j ++){
                 if(word[i]==word[j]){
-                    if(((j-i-1) % 2) == 0){
+                    if(((j-i-1) % 2) == 0 && no){
                         cout << "NO" << endl;
                         no = false;
-                        goto exitloop;
                     }
                 }
             }
         }
-        exitloop:
         if(no){cout << "YES" << endl;}
         
     }
 
 }
+
 
 
 
