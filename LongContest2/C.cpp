@@ -43,18 +43,21 @@ int main(){
             }
 
             else if(vec[i] > vec[i+1]){
-                answer.push_back(vec[i]);
+                if(answer.back() == vec[i] && i != 1){continue;}
+                else{answer.push_back(vec[i]);}
             }
             
         }
+
         answer.push_back(vec[vec.size() - 1]);
         for(int i = 0; i < n - answer.size(); i ++){
             answer.push_back(0);
         }
+
         for(int i=0;i<n-1;i++){
             cout << answer[i] << ' ';
         }
+
         cout << answer[n-1] << endl;
-        
     }
 }
