@@ -3,11 +3,11 @@
 using namespace std;
 
 int main(){
-    int t,n;
+    long long int t,n;
     cin >> t;
     vector<int> vec;
     vector<int> answer;
-    int num;
+    long long int num;
 
     for(int init = 0; init < t; init ++){
 
@@ -51,11 +51,10 @@ int main(){
         for(int i = 0; i < n - answer.size(); i ++){
             answer.push_back(0);
         }
-        // se diferente do tamanho adicionar 0 no final
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n-1;i++){
             cout << answer[i] << ' ';
         }
-        cout << endl;
+        cout << answer[n-1] << endl;
         
     }
 }
