@@ -2,20 +2,18 @@
 using namespace std;
 
 int main(){
-    string S;
-    long long int N, max_L = -1,count = 0;
-    cin >> N;
-    cin >> S;
-    for(int i=0; i < N; i ++){
-        if(S[i] == 'o'){
-            count ++;
+    int t,n, max;
+    cin >>t;
+    for (int init = 0; init < t; init++){
+        string s;
+        cin >> n >> s;
+        max = s[0] - 'a';
+        for (int i =1; i < n; i ++){
+            if(s[i] - 'a' > max){
+                max = s[i]- 'a';
+            }
         }
-        if(S[i] == '-'){
-            if(count > max_L && count > 0){max_L = count;}
-            count = 0;
-        }
-        if(i == N-1){if(count > max_L && count > 0 && S[N-1-count] == '-'){max_L = count;}}
+        cout << max + 1 << endl;
     }
-    cout << max_L;
 
 }
