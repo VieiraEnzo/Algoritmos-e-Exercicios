@@ -5,13 +5,22 @@ using namespace std;
 int main(){
     int n;
     int input;
-    vector<int> order;
+    set<int> order;
     cin >>n;
 
     for(int i=0;i<n;i++){
         cin >> input;
-        order.push_back(input);
+        order.insert(input);
     }
 
+    
+    if(order.size() > 1){
+        set<int>::iterator it = order.begin();
+        it ++;
+        cout << *(it);
+    }
+    else{
+        cout << "NO";
+    }
     
 }
