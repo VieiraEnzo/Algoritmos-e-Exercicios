@@ -5,19 +5,20 @@ using namespace std;
 int bSearch(vector <int> &numeros, int e, int d, int x){
     if(x < numeros[0]) return -1;
     int mid;
-    while(e!=d){
+    while(e<=d){
         mid = (e+d)/2;
+        
         if(numeros[mid] == x){
-            return mid;
-        }
-        else if(numeros[mid] < x){
-            e = mid;
-        }
-        else{
             d = mid;
         }
+        else if(numeros[mid] < x){
+            e = mid + 1;
+        }
+        else{
+            d = mid - 1;
+        }
     }
-    return mid;
+    return mid -1;
 }
 
 
