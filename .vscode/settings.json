@@ -13,6 +13,7 @@
         "stacktrace": "cpp",
         "regex": "cpp",
         "valarray": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "cmath": "cpp"
     }
 }
