@@ -1,19 +1,5 @@
 {
     "files.associations": {
-        "ostream": "cpp",
-        "iostream": "cpp",
-        "string": "cpp",
-        "numbers": "cpp",
-        "array": "cpp",
-        "bitset": "cpp",
-        "string_view": "cpp",
-        "initializer_list": "cpp",
-        "ranges": "cpp",
-        "span": "cpp",
-        "stacktrace": "cpp",
-        "regex": "cpp",
-        "valarray": "cpp",
-        "algorithm": "cpp",
-        "cmath": "cpp"
+        "iostream": "cpp"
     }
 }
