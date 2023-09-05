@@ -16,12 +16,12 @@ int main(){
                 cout << (level*level) - (y-1) << endl;
             }
             else{
-                cout << ((level*level) - pow(2,level-1)) + (x-1) << endl;
+                cout << (((level-1)*(level-1)) +1) + (x-1) << endl;
             }
         }
         else{
             if(x == level){
-                cout << ((level*level) - pow(2,level-1)) + (y-1) << endl;
+                cout <<  (((level-1)*(level-1)) +1) + (y-1) << endl;
             }
             else{
                 cout << (level*level) - (x-1) << endl;
