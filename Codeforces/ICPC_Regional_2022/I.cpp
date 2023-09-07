@@ -12,7 +12,7 @@ int main(){
     vector<int>sub(n);
     int impar = 0;
 
-    int ans = 0;
+    long long ans = 0;
     int par_0 =0;
     int par_1 = 0;
     int impar_0 = 0;

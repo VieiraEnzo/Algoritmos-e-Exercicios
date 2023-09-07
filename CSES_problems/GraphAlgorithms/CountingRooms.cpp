@@ -2,6 +2,7 @@
 using namespace std;
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 vector<string> v;
+int n,m; 
 
 void bfs(int i,int j, vector<vector<int>> &visited){
     queue<pair<int,int>> fila;
@@ -13,19 +14,19 @@ void bfs(int i,int j, vector<vector<int>> &visited){
         int x = fila.front().first;
         int y = fila.front().second;
         fila.pop();
-        if(v[x+1][y] == '.' && !visited[x+1][y]){
+        if(x+1 < n && v[x+1][y] == '.' && !visited[x+1][y]){
             fila.push(make_pair(x+1,y));
             visited[x+1][y] = 1;
         }
-        if(v[x-1][y] == '.' && !visited[x-1][y]){
+        if(x-1>=0 && v[x-1][y] == '.' && !visited[x-1][y]){
             fila.push(make_pair(x-1,y));
             visited[x-1][y] = 1;
         }
-        if(v[x][y+1] == '.' && !visited[x][y+1]){
+        if(y+1 < m && v[x][y+1] == '.' && !visited[x][y+1]){
             fila.push(make_pair(x,y+1));
             visited[x][y+1] = 1;
         }
-        if(v[x][y-1] == '.' && !visited[x][y-1]){
+        if(y-1 >= 0 &&v[x][y-1] == '.' && !visited[x][y-1]){
             fila.push(make_pair(x,y-1));
             visited[x][y-1] = 1;
         }
@@ -37,7 +38,7 @@ void bfs(int i,int j, vector<vector<int>> &visited){
 
 int main(){
     fastio;
-    int n,m; cin >> n >> m;
+    cin >> n >> m;
     v.resize(n);
     for(int i=0; i< n; i ++) cin >> v[i];
     vector<vector<int>> visited(n);
