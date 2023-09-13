@@ -6,7 +6,11 @@ typedef long long ll;
 
 int main(){
     fastio;
-
+    int n,m; cin >> n >> m;
+    vector<ll>v(n);
+    for(int i =0; i < n; i++){
+        cin >> v[i];
+    }
     
 
 }

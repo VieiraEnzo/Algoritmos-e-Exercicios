@@ -6,7 +6,7 @@ typedef long long ll;
 
 int main(){
     fastio;
-
-    
+    int n; cin >> n;
+    cout << (n/5) << endl;
 
 }
