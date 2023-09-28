@@ -19,9 +19,10 @@ int bfs(int x, int y)
     {
         int v = fila.front().first;
         int h = fila.front().second;
+        fila.pop();
 
         for(int a : graph[v]){
-            if(a == y) father[y] = v ;return h+1;
+            if(a == y) {father[y] = v ;return h+1;}
             if (vis[a]) continue;
             vis[a] = 1;
             father[a] = v;
@@ -53,18 +54,18 @@ int main(){
     vector<int> res;
     int i = n-1;
 
-    for(auto a : father)
-    {
-        cout << a << " ";
-    }
-
-    // while (father[i] != 1)
+    // for(auto a : father)
     // {
-    //     cout << father[i] <<" "<< i << endl;
-    //     res.push_back(i);
+    //     cout << a << " ";
     // }
-    // res.push_back(1);
-    // reverse(res.begin(), res.end());
+
+    while (father[i] != 1)
+    {
+        res.push_back(i);
+        i = father[i];
+    }
+    res.push_back(1);
+    reverse(res.begin(), res.end());
     
     for(auto a : res)
     {
