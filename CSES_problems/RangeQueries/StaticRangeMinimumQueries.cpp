@@ -33,7 +33,7 @@ ll fastexp(ll b, ll e)
 
 
 int main(){
-    fastio;
+    //fastio;
     ll n, q; cin >> n >> q;
     vector<ll> v(n);
     for(ll i =0; i <n; i ++) cin >> v[i];
@@ -50,26 +50,37 @@ int main(){
             m[i].push_back(min(m[i].back(), m[i+j-1].back()));
         }
     
+    for(auto a : m){
+        for(auto b : a){
+            cout << b << " "; 
+        }
+        cout << endl;
+    }
+
+
     //QUERIES
     while (q--)
     {
         ll i,j; cin >> i >> j;
         i--;j--;
-        ll range = (j - i);
-        ll res = 1e18;
-        while (range >= 0)
-        {
-            if(range == 0) {res = min(res, v[i]);break;}
-            ll a = mlog2(range);
-            res = min(res, m[i][a]);
-            i = (i+fastexp(2,a));
-            range = j-i;
+        // ll range = (j - i);
+        // ll res = 1e18;
+        // while (range >= 0)
+        // {
+        //     if(range == 0) {res = min(res, v[i]);break;}
+        //     ll a = mlog2(range);
+        //     res = min(res, m[i][a]);
+        //     i = (i+fastexp(2,a));
+        //     range = j-i;
 
-        }
+        // }
+        ll range = (j-i);
+        if(range == 0) {cout << v[i] << endl;continue;}
+        ll size =mlog2(range);
+        ll b = range - fastexp(2,size);
+        ll res = min(m[i][size], m[i+b][size]);
         cout << res << endl;
         
         
     }
-    
-
 }
