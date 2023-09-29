@@ -59,7 +59,7 @@ int main(){
     //     cout << a << " ";
     // }
 
-    while (father[i] != 1)
+    while (father[i] != i)
     {
         res.push_back(i);
         i = father[i];
@@ -67,6 +67,7 @@ int main(){
     res.push_back(1);
     reverse(res.begin(), res.end());
     
+    cout << ans << endl;
     for(auto a : res)
     {
         cout << a << " ";
