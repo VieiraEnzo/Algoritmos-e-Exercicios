@@ -6,37 +6,38 @@ typedef long long ll;
 
 int main(){
     fastio;
+    map<char,int> pa;
     string s; cin >> s;
-    sort(s.begin(), s.end());
-    char mid;
-    bool first = true;
-    for(int i =0; i < s.size(); i+=2)
+    for(int i =0; i < s.size(); i++) pa[s[i]]++;
+    vector<char> resp;
+    
+    auto it = pa.begin();
+    while (it != pa.end())
     {
-        if(s[i] != s[i+1]){
-            if(first)
-            {
-                mid = s[i];
-                first = false;
-                i--;
+        while ((*it).second > 1)
+        {
+            pa[(*it).first] -= 2;
+            resp.push_back((*it).first);
+        }
+        it++;
+        
+    }
+
+    bool first = false;
+    for(auto a : pa){
+        if(pa[a.first] == 1) 
+            if(!first){
+                first = true;
             }
-            else if(!first)
-            {
-                cout << "NO SOLUTION" << endl;
-                return 0;
+            else{
+                cout <<  "NO SOLUTION"; return 0;
             }
         }
 
-    }
 
-    for(int i =0; i < s.size(); i+=2)
-    {
-        cout << s[i];
-    }
-    if(first) cout << mid;
-    for(int i = s.size()-1; i>=0; i-=2)
-    {
-        cout << s[i];
-    }
+    for(auto a : resp) cout << a;
+    for(auto a : pa){if(pa[a.first] == 1) cout << a.first;}
+    for(int i =resp.size()-1; i >= 0; i --) cout << resp[i];
 
 
 }
