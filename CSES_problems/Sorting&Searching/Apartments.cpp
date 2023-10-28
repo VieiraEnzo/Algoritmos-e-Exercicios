@@ -8,20 +8,21 @@ int main(){
     fastio;
     int n, m,k; cin>>n>>m>>k;
     vector<int> desir(n);
-    vector<int> apt(n);
+    multiset<int> apt;
     for(int i =0; i < n; i ++)cin>> desir[i];
-    for(int i =0; i < m; i ++)cin>> apt[i];
+    for(int i =0; i < m; i ++){
+        int temp; cin >> temp;
+        apt.insert(temp);
+    }
     sort(desir.begin(), desir.begin()+n);
-    sort(apt.begin(), apt.begin()+m);
 
     int index = 0;
     for(int i =0; i < n; i++){
-        if(apt[index] >= desir[i]-k && apt[index] <= desir[i]+k){
-            index++;
-        }   
+        auto it  = apt.lower_bound(desir[i]-k);
+        if(it == apt.end()) continue;
+        else if(*it > desir[i] +k) continue;
+        apt.erase(it);index++;
     }
 
-    
-
-
+    cout << index << endl;
 }
