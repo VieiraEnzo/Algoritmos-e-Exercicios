@@ -9,7 +9,7 @@ typedef long long ll;
 int main()
 {
     fastio;
-    ifstream fin("gymnastics.in");
+    ifstream fin("circlecross.in");
     string st;
     fin >> st;
     //cin >> st;
@@ -50,7 +50,7 @@ int main()
 
 
 
-    ofstream fout("gymnastics.out");
+    ofstream fout("circlecross.out");
     fout << ans << endl;
     //cout << ans;
     fin.close();

@@ -40,7 +40,7 @@ int main(){
         int temp = mp[x];
         mp[x] = mp[y];
         mp[y] = temp;
-
+    
         ans += desl;
         cout << ans << endl;
     }
