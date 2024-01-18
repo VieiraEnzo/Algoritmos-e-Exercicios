@@ -5,9 +5,5 @@ using namespace std;
 typedef long long ll;
 
 int main(){
-    fastio;
-    int n; cin >> n;
-    vector<vector<int>>
     
-
 }

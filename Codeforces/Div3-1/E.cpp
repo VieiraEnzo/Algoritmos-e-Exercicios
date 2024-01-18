@@ -19,7 +19,10 @@ void solve()
     if(Alice.y >= Bob.y){cout << "Draw" << endl; return;}
     if(abs(Alice.y - Bob.y) %2)//Alice can win
     {
-        if(abs(Bob.x - Alice.x) > 1 && (w - Bob.x) > abs(Bob.x - Alice.x)/2) //Bob runs
+        if(abs(Bob.x - Alice.x) > 1 && (Bob.x - Alice.x) > 0 && w - Bob.x > abs(Bob.x - Alice.x)/2) //Bob runs
+        {cout << "Draw" << endl; return;}
+
+        if(abs(Bob.x - Alice.x) > 1 && (Bob.x - Alice.x) < 0 && Bob.x - 1 > abs(Bob.x - Alice.x)/2) //Bob runs
         {cout << "Draw" << endl; return;}
 
         cout << "Alice" << endl;
@@ -27,11 +30,11 @@ void solve()
 
     else
     {
-        if(abs(Bob.x - Alice.x) > 1 && (w - Alice.x) > abs(Bob.x - Alice.x)/2 + 1) //Alice runs
-        {cout << "Draw" << endl; return;}
+        if(Alice.x == Bob.x) //Alice runs
+        {cout << "Bob" << endl; return;}
 
-        cout << "Bob" << endl;
-    }
+        cout << "Draw" << endl;
+    }   
 
 }
 
