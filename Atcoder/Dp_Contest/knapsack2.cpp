@@ -3,46 +3,36 @@ using namespace std;
 #define endl "\n"
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 typedef long long ll;
-int max_lucro = 100000;
+int max_lucro = 100005;
+ll inf = 1e18;
 vector<int> peso;
 vector<int> lucro;
-
-// int solve(int n, int l){
-//     if(l < 0) return 1e9;
-//     if(n = 1 && l < lucro[1]) return peso[1];
-//     else if (n = 1) return 1e9;
-//     int a = solve(n-1,l);
-//     int b = solve(n-1, l - lucro[n]) + peso[n];
-//     return min(a,b);
-// }
 
 
 int main(){
     //fastio;
     int n, w; cin >> n >> w;
-    peso.resize(n+1);
-    lucro.resize(n+1);
-
-    int dp[max_lucro];
-    fill(dp, dp + max_lucro, 1e9);
-    for(int i =1; i <= n; i++)cin >> peso[i] >> lucro[i];
-    for(int i = 0; i < lucro[i]; i ++)dp[i] = peso[1];
-    for(int i = 2; i <= n; i++){
-        for(int l = 0; l <= max_lucro; l++)
-        {
-            if(l-lucro[i] < 0){continue;}
-            dp[l] = min(dp[l], dp[l- lucro[i]] + peso[i]);
-            
-        }
+    //procurar menor peso para obter valor v
+    vector<pair<int,int>> item(n+1);
+    for(int i = 1; i <= n; i ++){
+        int w1,v1; cin >> w1 >> v1;
+        item[i] = {w1,v1};
     }
-    for(int l = max_lucro; l>=0; l--){ 
-        cout << dp[l] << " ";
-        if(dp[l] <= w ){
-            cout << dp[l] << endl;
-            return 0;
+    
+    ll dp[n+1][max_lucro];
+    dp[0][0] = 0;
+    for(int i = 1; i < max_lucro; i ++) dp[0][i] = inf;
+
+    for(int i =1; i <= n; i++)
+        for(int j = 0; j < max_lucro; j++){
+            dp[i][j] = dp[i-1][j];
+            if(j - item[i].second >= 0)
+                dp[i][j] = min(dp[i-1][j], dp[i-1][j - item[i].second] + item[i].first);
         }
+
+    ll ans = 0;
+    for(int i= 0; i < max_lucro; i++){
+        if(dp[n][i] <= w) ans = i;
     }
 
-
-
-}
+    cout << ans << endl;}
