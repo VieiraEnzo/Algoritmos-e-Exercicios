@@ -18,7 +18,9 @@ template<typename T> struct Hashing{
     T getRange(int a, int b){
         assert(a <= b);
         return ha[b] - ha[a] * pow[b-a];
+
     }
+    
 
 };
 
