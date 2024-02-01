@@ -5,6 +5,12 @@
 //getRange - O(1)
 
 //Cria o hashing de uma string
+//
+//ha[0] = 0
+//ha[1] = s[0]
+//ha[2] = p*s[0] + s[1]
+//ha[3] = p^2*s[0] + p*s[1] + s[2]
+
 
 template<int MOD> struct Hashing{
     ll base, n;
@@ -19,7 +25,9 @@ template<int MOD> struct Hashing{
         }
 
     }
-    T getRange(int a, int b){
+    
+    //Retorna o Hashing da substring [a, b)
+    int getRange(int a, int b){
         assert(a <= b);
         ll hash =  ha[b] - ha[a] * pow[b-a];
         return hash < 0 ? hash + MOD : hash;
