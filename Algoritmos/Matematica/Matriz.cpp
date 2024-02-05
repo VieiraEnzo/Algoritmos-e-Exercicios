@@ -1,12 +1,9 @@
-#include<bits/stdc++.h>
-using namespace std;
-typedef vector<long long> vll;
-typedef long long ll;
-
-// [P1(n)] = [2 1] ^ n-1 * [P1(0)]
-// [P2(n)]   [3 3]         [P2(0)]
-
+//Multiplicação e Exponensiação de Matrizes
+//Utilizado principalmente em recorrencias lineares
 //
+//https://www.codemarathon.com.br/conteudos/matematica/recorrencia-linear
+//
+
 
 const int D = 2;
 const int MOD = 1000000007;
@@ -41,16 +38,3 @@ struct Matriz{
     return res;
   }
 };
-
-int main(){
-    int n; cin >> n;
-
-    Matriz c;
-    c[0][0] = 1, c[0][1] = 2;
-    c[1][0] = c[1][1] = 3;
-
-    c = c.exp(n-1);
-    
-    cout << 6 * (c[0][0] + c[0][1]) + 6 * (c[1][0] + c[1][1]) << endl;
-
-}
