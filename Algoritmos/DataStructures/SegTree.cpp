@@ -1,8 +1,7 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define endl "\n"
-#define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
-typedef long long ll;
+//SegTree
+//Update - O(n)
+//Querry - O(n)
+
 
 template<typename T> struct SegTree{
     int n;
@@ -14,6 +13,8 @@ template<typename T> struct SegTree{
 
     SegTree(int n) : n(n), tree(4*(n+1)){}
 
+    //Coda build é opcional, obtem-se o mesmo resultado em O(nlog)
+    //fazendo um update para cada nó
     void build(vector<T> &a, int node, int l, int r){
         if(l == r){
             tree[node] = a[l];
@@ -26,8 +27,8 @@ template<typename T> struct SegTree{
     }
 
     T query(int node, int l, int r, int a , int b){
-        if(a>r || b<l) return neutral; //
-        if(a<=l && b>=r) return tree[node];
+        if(a>r || b<l) return neutral; //verificar se nó pertence ao range
+        if(a<=l && b>=r) return tree[node]; //usar se estiver contido
         int mid = (l+r)/2;
         return join(query(2*node, l , mid, a, b) , 
                         query(2*node+1, mid+1, r, a, b));
@@ -48,29 +49,3 @@ template<typename T> struct SegTree{
     }
 
 };
-
-
-int main(){
-    fastio;
-
-    int n,q; cin >> n >> q;
-    vector<ll> a(n+1);
-    for(int i= 1; i <= n; i++) cin>>a[i];
-
-    SegTree<ll> s(n);
-
-    s.build(a, 1, 1, n);
-
-    while (q--)
-    {
-        int i, a ,b; cin >> i >> a >> b;
-
-        if(i == 1){
-            s.update(1,1,n,a,b);
-        }else{
-            cout << s.query(1,1,n,a,b) << endl;
-        }
-    }
-    
-
-}
