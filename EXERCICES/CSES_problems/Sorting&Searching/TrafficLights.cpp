@@ -4,28 +4,32 @@ using namespace std;
 
 int main(){
 
+    cin.tie(nullptr); ios_base::sync_with_stdio(0);
+
     int x, n; cin >> x >> n;
     multiset<int> ans;
-    map<int,int> pt;
-    pt[x] = x;
     ans.insert(x);
+    set<int> pt;
+    pt.insert(x);
+    pt.insert(0);
 
     for(int i = 0;  i < n ;i++){
         int pi; cin >> pi;
-        pt[pi] = pi;
-        auto pre = prev(pt.find(pi)) , nxt = next(pt.find(pi));
+        pt.insert(pi);
+        auto pos = pt.find(pi);
+        auto nxt = next(pos);
+        auto pre = prev(pos);
 
-        if(pre != pt.end())pt[pi] = pi - (*pre).second;
-        ans.insert(pt[pi]);
-        ans.erase((*nxt).second);
-        (*nxt).second = (*nxt).first - pi;
-        ans.insert((*nxt).second);
+        ans.erase(ans.find(*nxt - *pre));
 
-        // cout << (*ans.end()) << " ";
-        for(auto a : ans){
-            cout << a << " ";
-        }cout << endl;
-    }
+        ans.insert(*pos - *pre);
+        ans.insert(*nxt - *pos);
+
+        // for(auto a : ans){
+        //     cout << a << " "; 
+        // }cout << endl;
+        cout << (* (--ans.end())) << " ";
+    }   
 
     cout << endl;
 
