@@ -1,9 +1,10 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define endl "\n"
+#define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
+typedef long long ll;
 
-//Algoritmo de Caminho mínimo para grafos com
-//pesos não negativos. Um para todos
-// O(nlog)
-
-template<typename T> struct Dykstra
+struct Dykstra
 {
     ll INF = 1e18;
 
@@ -15,7 +16,6 @@ template<typename T> struct Dykstra
 
     void addEdge(ll v, ll u, ll p){
         g[v].push_back({u,p});
-        g[u].push_back({v,p});
     }
 
     void dykstra(ll v){
@@ -48,3 +48,26 @@ template<typename T> struct Dykstra
 
 };
 
+
+
+
+
+int main(){
+    fastio;
+    int n; cin >> n;
+
+    Dykstra prob(n);
+
+    for(int i = 1; i < n; i++){
+        int a, b, x; cin >> a >> b >> x;
+        prob.addEdge(i,i+1,a);
+        prob.addEdge(i, x, b);
+    }
+
+    prob.dykstra(1);
+
+
+    cout << prob.dist[n] << endl;
+    
+
+}
