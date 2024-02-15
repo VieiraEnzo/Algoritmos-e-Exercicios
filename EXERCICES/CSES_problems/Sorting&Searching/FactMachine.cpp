@@ -3,55 +3,41 @@ using namespace std;
 #define endl "\n"
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 typedef long long ll;
+ll t;
+
+bool f(ll test, vector<ll> &v){
+    ll ans = 0;
+    for(ll i = 0; i < v.size(); i++){
+        ans += test/v[i];
+        if(ans >= t) return true;
+    }
+    return ans >= t;
+}
+
+void bb(vector<ll> &v){
+
+    ll l=0, r = 1e18;
+
+    while (l < r)
+    {   
+        ll mid = (l+r)/2;
+        if(f(mid, v)){
+            r = mid;
+        }else{
+            l = mid+1;
+        }
+    }
+    
+    cout << l << endl;
+
+}
 
 int main(){
     fastio;
-    ll n,t; cin >> n >> t;
-    priority_queue<pair<ll,ll>, vector<pair<ll,ll>>
-    ,greater<pair<ll,ll>>> fila;
-
+    ll n; cin >> n >> t;
     vector<ll> v(n);
-
-    for(ll i = 0; i < n; i++){
-        ll a; cin >> a;
-        fila.push({a,a});
-        v[i] = a;
-    }
-
-    if(n == 1) {cout << t * v[0];return 1;}
-
-    //reduce
-    ll mdc = v[0];
-    for(int i = 1; i < n; i++)mdc = __gcd(mdc,v[i]);
-
-    ll mmc= 1;
-    for(int i = 0; i< n; i++){
-        mmc *= v[i];
-    }mmc /= mdc; //mmc é o tempo
-
-    ll Nprod = 0;
-    for(int i = 0; i < n;i++){
-        Nprod += mmc/v[i];
-    }
-
-    ll Rodadas = t/Nprod;
-
-    t = t % Nprod;
-
-    ll time = 0;
-    while (t != 0)
-    {
-        ll tm = fila.top().first;
-        ll mac = fila.top().second;
-        fila.pop();
-        t--;
-        time = max(time, tm);
-        tm += mac;
-        fila.push({tm, mac});
-            
-    }
-
-    cout << mmc * Rodadas + time << endl;
+    for(ll i = 0; i < n; i++)cin>> v[i];
+    bb(v);
     
     
 }
