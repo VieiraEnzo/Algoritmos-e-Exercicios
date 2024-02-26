@@ -18,7 +18,7 @@ struct Dinic{
     vector<int> lv, pos;
     queue<int> fila;
 
-    Dinic(int n, int s, int t): n(n), t(t), vec(n+1), lv(n+1), pos(n+1) {}
+    Dinic(int n, int s, int t): n(n), s(s), t(t), vec(n+1), lv(n+1), pos(n+1) {}
 
     void add_edge(int v, int u, ll cap){
         edges.emplace_back(v, u, cap);
@@ -96,6 +96,23 @@ int main(){
     fastio;
     int n, m; cin >> n >> m;
 
+    Dinic solve(n+m+2, 1, n+m+2);
+
+    for(int i = 2; i <= n + 1; i++){
+        solve.add_edge(1,i,1);
+        int k; cin >> k;
+        while (k--)
+        {
+            int color; cin >> color; color += (n +1);
+            solve.add_edge(i, color, 1);
+        }
+    }
+
+    for(int i = 1; i <= m; i++){
+        solve.add_edge(i + n + 1,n+m+2, 1);
+    }
+
+    cout << solve.max_flow() << endl;
     
     
 
