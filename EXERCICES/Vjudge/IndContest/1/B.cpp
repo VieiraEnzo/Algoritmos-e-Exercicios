@@ -8,13 +8,13 @@ typedef long long ll;
 void solve(){
     int n, x, p; cin >> n >> x >> p;
 
-    int jump = 2;
+    int jump = 1;
     int pos = x;
     while (p--)
     {   
-        pos += jump;
+        pos = (pos + jump)%n;
         if(pos == 0) {cout << "Yes" << endl; return;}
-        jump++;
+        jump++;    
     }
     
     cout << "No" << endl;
