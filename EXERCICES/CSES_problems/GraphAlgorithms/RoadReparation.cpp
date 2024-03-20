@@ -1,25 +1,30 @@
 #include<bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
 struct DSU
 {
-    int n;
-    vector<int> pai, rank;
+    ll n;
+    vector<ll> pai, rank;
 
-    DSU(int n) : n(n), pai(n+1), rank(n+1,1){
-        for(int i = 1; i <=n; i++){
+    DSU(ll n) : n(n), pai(n+1), rank(n+1,1){
+        for(ll i = 1; i <=n; i++){
             pai[i] = i;
         }
     }
 
-    int find(int a){
+    ll find(ll a){
+        if(pai[a] == a) return a;
         return pai[a] = find(pai[a]);
     }
 
-    void union(int a, int b){
-        
+    void uu(ll a, ll b){
+        a = find(a);
+        b = find(b);
+        if(rank[a] > rank[b]) swap(a,b);
+        rank[b] += rank[a];
+        pai[a] = b;
     }
-
 
 };
 
@@ -28,29 +33,40 @@ struct DSU
 
 int main(){
 
-    int n,m; cin >> n >> m;
+    ll n,m; cin >> n >> m;
 
     DSU dsu(n);
 
-    vector<array<int,3>> arestas(m);
+    vector<array<ll,3>> arestas(m);
 
-    for(int i = 0; i < m; i++){
-        cin >> arestas[i][0] >> arestas[i][1]  >> arestas[i][2]; 
+    for(ll i = 0; i < m; i++){
+        cin >> arestas[i][1] >> arestas[i][2]  >> arestas[i][0]; 
     }
 
     sort(arestas.begin(), arestas.end());
     
-    int ans = 0;
-    for(int i = 0; i < m; i++){
-        int a = arestas[i][1];
-        int b = arestas[i][2];
-        int p = arestas[i][0];
+    ll ans = 0;
+    for(ll i = 0; i < m; i++){
+        ll a = arestas[i][1];
+        ll b = arestas[i][2];
+        ll p = arestas[i][0];
 
         if(dsu.find(a) != dsu.find(b)){
-            dsu.union(a,b);
+            dsu.uu(a,b);
             ans += p;
         }
-
     }
 
+    ll solve = 0;
+    for(ll i = 1; i <= n; i++){
+        if(dsu.pai[i] == i){
+            solve++;
+        }
+    }
+    if(solve > 1){
+        cout << "IMPOSSIBLE" << endl;
+        return 0;
+    }else{
+        cout << ans << endl;
+    }
 }
