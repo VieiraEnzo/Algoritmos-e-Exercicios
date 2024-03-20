@@ -1,13 +1,17 @@
 //Arvore Geradora Mínima, Algoritmo de Kruskal
 //requerido um dsu antes
 
-template<typename T> void Kruskal(){
-    init();
-    sort(total.begin(), total.end());
-    for(array<init, 3> i : total){
-        if(ff(i[1]) != ff(i[2])){
-            uu(i[1], i[2]);
-            resp+=i[0];
+template<typename T> struct Kruskal
+{
+    void MinTree(){
+        sort(arestas.begin(), arestas.end());
+        for(auto arr : arestas){
+            int p = arr[0], a = arr[1], b = arr[2];
+            if(find(a) != find(b)){
+                uu(a,b);
+                //dicionar aresta
+            }
         }
     }
-}
+
+};
