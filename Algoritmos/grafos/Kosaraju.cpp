@@ -5,7 +5,7 @@
 
 template<typename T> struct Kosa{
 
-    int n, cont = 0;
+    int n, cont;
     vector<int> marc, ord, comp;
     vector<vector<int>> grafo, rgrafo,scc;
 

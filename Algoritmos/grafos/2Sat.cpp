@@ -1,7 +1,10 @@
-#include <bits/stdc++.h>
-using namespace std;
+//Algoritmo para resolver equações do tipo
+//(a ou b) e (c ou d) e (~a ou c) ...
+//
+// (+a  ou -b) -> add_edge(1, a, 0, b)
+// 
 
-struct SAT2{
+template<typename T> struct SAT2{
 
     int n, cont;
     vector<char> resp;
@@ -10,7 +13,7 @@ struct SAT2{
 
     SAT2(int n) :  n(n), marc(2*n+2), grafo(2*n+2), rgrafo(2*n+2), comp(2*n+2), resp(2*n + 2){}
 
-    void add_edge(int sx, int x, int sy, int y){
+    void add_edge(int sx, int x, int sy, int y){ // '+' = 1, '-' = 0
 
         grafo[y+n*(!sy)].push_back(x+n*sx); //~y -> x
         grafo[x+n*(!sx)].push_back(y+n*sy); //~x -> y
@@ -54,7 +57,9 @@ struct SAT2{
         bool can = true;
         for(int i= 1; i <=n; i++){
             if(comp[i] == comp[i+n]) can = false;
-            resp[i]=comp[i]<comp[i+n]?'+':'-';
+            resp[i]=comp[i]<comp[i+n]?'+':'-'; 
+            //positiva é comp[i+n], está escolhendo a variavel que não
+            //tem um caminho de implicação que resulta em impossivel
         }
 
         if(can){
@@ -67,24 +72,3 @@ struct SAT2{
     }
 
 };
-
-
-
-int main(){
-
-    int n, m; cin >> n >> m;
-    
-    SAT2 sat(m);
-
-    for(int i = 0; i < n; i++){
-        int x, y;
-        char sx, sy;
-        cin >> sx >> x >> sy >> y;
-
-        sat.add_edge(sx=='+'?1:0, x, sy=='+'?1:0, y);
-    }
-
-    sat.build();
-
-
-}
