@@ -4,7 +4,6 @@
 #pragma GCC optimize("pragv")
 
 using namespace std;
-using namespace std;
 using namespace __gnu_pbds;
 
 #define endl "\n"

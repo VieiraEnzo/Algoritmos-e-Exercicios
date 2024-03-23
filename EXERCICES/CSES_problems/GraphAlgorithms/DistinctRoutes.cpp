@@ -1,10 +1,15 @@
-template<typename T> struct Edge{
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define fastio cin.tie(0), ios_base::sync_with_stdio(0);
+
+struct Edge{
     int v, u;
     ll cap, flow = 0;
     Edge(int v, int u, ll cap) : v(v), u(u), cap(cap) {}
 };
 
-template<typename T> struct Dinic{
+struct Dinic{
     ll INFL = 1e18;
     int n, m = 0, s, t;
     vector<Edge> edges;
@@ -76,7 +81,7 @@ template<typename T> struct Dinic{
         return flow;
     }
 
-    void recap(){
+    void recap(){ //find mincut
         for(int i=0; i<(int)edges.size(); i+=2){
             if(lv[edges[i].v]>=0 && lv[edges[i].u] == -1){
                 cout << edges[i].v << " " << edges[i].u << endl;
@@ -86,3 +91,42 @@ template<typename T> struct Dinic{
 };
 
 
+//DFS ESTA ERRADAAAAAAAA BURRO BURRO BURRO BURRO BURRO
+int n;
+vector<int> ans;
+void dfs(int v, Dinic &d){
+    for(int i : d.vec[v]){
+        if(d.edges[i].flow > 0){
+            d.edges[i].flow = 0;
+            ans.push_back(v);
+            dfs(d.edges[i].u, d);
+        }
+    }
+    if(ans.size()){
+        cout << ans.size() + 1 << endl;
+        for(auto a : ans) cout << a << " ";
+        cout << n;
+        cout << endl;
+        ans.clear();
+    }
+}
+
+
+
+int main(){
+
+    fastio;
+    int m; cin >> n >> m;
+
+    Dinic dinic(n,1,n);
+
+    for(int i = 0; i < m; i++){
+        int a,b; cin >> a >> b;
+        dinic.add_edge(a,b,1);
+    }
+
+    cout << dinic.max_flow() << endl;
+
+    dfs(1, dinic);
+
+}

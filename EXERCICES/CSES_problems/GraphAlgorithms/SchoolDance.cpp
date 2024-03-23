@@ -1,10 +1,15 @@
-template<typename T> struct Edge{
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define fastio cin.tie(0), ios_base::sync_with_stdio(0);
+
+struct Edge{
     int v, u;
     ll cap, flow = 0;
     Edge(int v, int u, ll cap) : v(v), u(u), cap(cap) {}
 };
 
-template<typename T> struct Dinic{
+struct Dinic{
     ll INFL = 1e18;
     int n, m = 0, s, t;
     vector<Edge> edges;
@@ -76,7 +81,7 @@ template<typename T> struct Dinic{
         return flow;
     }
 
-    void recap(){
+    void recap(){ //find mincut
         for(int i=0; i<(int)edges.size(); i+=2){
             if(lv[edges[i].v]>=0 && lv[edges[i].u] == -1){
                 cout << edges[i].v << " " << edges[i].u << endl;
@@ -86,3 +91,38 @@ template<typename T> struct Dinic{
 };
 
 
+
+int main(){
+
+    fastio;
+    int n, m, k; cin >> n >> m >> k;
+
+    // s = 1
+    // boys = 2...n+1
+    // girls = n+2 ... n+m+1
+    // t = n+m+2
+
+    Dinic dinic(n+m+2,1,n+m+2);
+
+    for(int i = 1; i <= n; i++){
+        dinic.add_edge(1, i+1, 1);
+    }
+    for(int i = 1; i <= m; i++){
+        dinic.add_edge(i+n+1, n+m+2, 1);
+    }
+
+    for(int i = 0; i < k; i++){
+        int a,b; cin >> a >> b;
+        dinic.add_edge(a+1,b+n+1,1);
+    }
+
+    cout << dinic.max_flow() << endl;
+
+    for(int i=0; i<(int)dinic.edges.size(); i+=2){
+        if(dinic.edges[i].flow > 0 && dinic.edges[i].u != 1 
+            && dinic.edges[i].v != n+m+2 && dinic.edges[i].v != 1  && dinic.edges[i].u != n+m+2 ){
+            cout << dinic.edges[i].v-1 << " " << dinic.edges[i].u - n - 1 << endl;
+        }
+    }
+
+}
