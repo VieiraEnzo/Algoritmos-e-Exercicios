@@ -96,10 +96,11 @@ int n;
 vector<int> ans;
 void dfs(int v, Dinic &d){
     for(int i : d.vec[v]){
-        if(d.edges[i].flow > 0){
+        if(i%2 == 0 && d.edges[i].flow > 0){
             d.edges[i].flow = 0;
             ans.push_back(v);
             dfs(d.edges[i].u, d);
+            if(v != 1) break;
         }
     }
     if(ans.size()){
