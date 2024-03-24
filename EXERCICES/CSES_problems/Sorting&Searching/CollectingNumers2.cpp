@@ -8,40 +8,47 @@ typedef long long ll;
 
 int main(){
     //fastio;
-    map<int,int> mp;
     int n,m; cin >> n >> m;
-    for(int i = 0 ; i < n ; i++)
+    vector<int> mp(n+1);
+    vector<int> v(n+1);
+    for(int i = 1 ; i <= n ; i++)
     {
         int temp; cin >> temp;
         mp[temp] = i;
+        v[i] = temp;
     }
+
+    vector<int> resp(n+1);
 
     ll ans = 1;
     for(int i = 2 ; i <= n ; i++)
     {
-        if(mp[i-1] > mp[i]){ans++;}
+        if(mp[i-1] > mp[i]){
+            resp[i] = 1;
+            ans++;
+        }
     }
+
     
     while (m--)
     {
-        int x,y; cin >> x >> y;
-        int desl = 0;
+        int a,b; cin >> a >> b;
+        int x = v[a];
+        int y = v[b];
 
-        if(x != 1 && mp[x-1] < mp[x] && mp[x-1] > mp[y]){desl++;}
-        if(x!= 1 && mp[x-1] > mp[x] && mp[x-1] < mp[y]){desl--;}
-        else if(x != 5 && mp[x+1] > mp[x] && mp[x+1] < mp[y]){desl++;}
-        else if(x != 5 && mp[x+1] < mp[x] && mp[x+1] > mp[y]){desl--;}
 
-        if(y != 1 && mp[y-1] < mp[y] && mp[y-1] > mp[x]){desl++;}
-        if(y != 1 && mp[y-1] > mp[y] && mp[y-1] < mp[x]){desl--;}
-        else if(y != 5 && mp[y+1] > mp[y] && mp[y+1] < mp[x]){desl++;}
-        else if(y != 5 && mp[y+1] < mp[y] && mp[y+1] > mp[x]){desl--;}
-
-        int temp = mp[x];
-        mp[x] = mp[y];
-        mp[y] = temp;
-    
-        ans += desl;
+        if(mp[x-1] > mp[x] && !(mp[x-1] > mp[y])){ans--;}
+        if(!(mp[x-1] > mp[x]) && (mp[x-1] > mp[y])) ans++;
+        if(mp[x+1] > mp[x+1] && !(mp[y] > mp[x+1])){ans--;}
+        if(!(mp[x] > mp[x+1]) && (mp[y] > mp[x+1])) ans++;
+        
+        if(mp[y-1] > mp[y] && !(mp[y-1] > mp[x])) ans--;
+        if(!(mp[y-1] > mp[y]) && (mp[y-1] > mp[x])) ans++;
+        if(mp[y] > mp[y+1] && !(mp[x] > mp[y+1])) ans--;
+        if(!(mp[y] > mp[y+1]) && (mp[x] > mp[y+1])) ans++;
+        
+        swap(mp[x], mp[y]);
+        swap(v[a], v[b]);
         cout << ans << endl;
     }
     
