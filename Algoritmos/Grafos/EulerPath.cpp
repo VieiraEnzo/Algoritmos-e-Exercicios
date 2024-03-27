@@ -33,7 +33,7 @@ template<typename T> struct Euler{ // Euler euler(n, m, 0); O(V+E)
                 impar+=(grau[i]&1);
             }
             if(!impar || impar==2) return 1;
-        return 0;
+            return 0;
         }
         int maior=0, menor=0;
         for(int i=1; i<=n; i++){

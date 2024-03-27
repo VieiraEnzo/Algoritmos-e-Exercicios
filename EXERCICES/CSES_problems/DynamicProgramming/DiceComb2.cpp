@@ -17,13 +17,18 @@ int main(){
 
     dp[0] = 1;
 
+    map<int,int> vis;
     for(int i = 1; i <= x; i++){
+        vis.clear();
         for(int j = 0; j < n; j++){
             int coin = coins[j];
-            if(i - coin < 0) continue;
+            if(i - coin < 0 || vis[coin]) continue;
             dp[i] = (dp[i-coin] + dp[i])%mod;
+            vis[i-coin] = 1;
         }
     }
+
+    for(int i = 0; i < x; i++) cout << dp[i] << " ";
 
     cout << dp[x] << endl;
 

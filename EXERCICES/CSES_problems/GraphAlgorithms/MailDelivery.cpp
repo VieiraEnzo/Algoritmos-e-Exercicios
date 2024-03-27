@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define fastio cin.tie(0), ios_base::sync_with_stdio(0);
 
 struct Euler{ // Euler euler(n, m, 0); O(V+E)
     int n, m, cont=0, dir;
@@ -58,13 +59,13 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
         //check the initial and final vertices
         fila.push_back(1);
         while(!fila.empty()){
-            int v=  (int) fila.back();
+            int v=fila.back();
             while(!vec[v].empty() && id[vec[v].back().second]){
                 grau[v]--;
                 vec[v].pop_back();
             }
             if(!grau[v]){
-                ans.push_back(v); //erro está aqui (?)
+                ans.push_back(v);
                 fila.pop_back();
                 continue;
             }
@@ -81,25 +82,27 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
 };
 
 int main(){
-    cin.tie(0), ios_base::sync_with_stdio(0);
+    fastio
     int n, m; cin >> n >> m;
-
-    Euler e(n,m,0);
+    Euler euler(n,m,0);
 
     for(int i = 0; i < m; i++){
         int a,b; cin >> a >> b;
-        e.add_edge(a,b);
+        euler.add_edge(a,b);
     }
 
-    if(e.check_circuit() == 0){
+    if(euler.check_circuit() == 0){
         cout << "IMPOSSIBLE" << endl;
         return 0;
     }
 
-    cout << "PO" << endl;
-    vector<int> a = e.find_euler();
-    cout << "a" << endl;
-    for(auto v : a){
-        cout << v << " ";
+    vector<int> ans =  euler.find_euler();
+
+    if(ans.size() == 0) cout << "IMPOSSIBLE" << endl;
+    else{
+        for(auto a : ans){
+            cout << a << " ";
+        }
     }
+    
 }

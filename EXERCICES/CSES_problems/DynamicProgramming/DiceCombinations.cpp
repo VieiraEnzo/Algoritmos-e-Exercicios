@@ -4,21 +4,26 @@ using namespace std;
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 typedef long long ll;
 
-int exp(int b, int e, int m){ // O(logE)
-    int res=1;
-        while(e){
-            if(e&1) res=(res*b)%m;
-            b=(b*b)%m;
-            e>>=1;
-        }
-    return res;
-}
-
-
 
 int main(){
     fastio;
     int n; cin >> n;
-    cout << exp(2,n-1,1000000007);
+    int mod = 1e9+7;
+    vector<int> v(n+1);
+    v[1] = 1;
+    v[2] = 2;
+    v[3] = 4;
+    v[4] = 8;
+    v[5] = 16;
+    v[6] = 32;
+    for(int i = 7; i <= n; i++){
+        v[i] = (v[i-1] + v[i])%mod;
+        v[i] = (v[i-2] + v[i])%mod;
+        v[i] = (v[i-3] + v[i])%mod;
+        v[i] = (v[i-4] + v[i])%mod;
+        v[i] = (v[i-5] + v[i])%mod;
+        v[i] = (v[i-6] + v[i])%mod;
+    }
 
+    cout << v[n] << endl;
 }
