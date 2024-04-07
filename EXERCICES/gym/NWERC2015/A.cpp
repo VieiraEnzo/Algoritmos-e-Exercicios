@@ -21,31 +21,36 @@ int main(){
     
 
     ll criados = 0;
-    ll livres = 0, reservados = 0;
+    priority_queue<ll, vector<ll> , greater<ll>> livres;
     while (!v.empty())
     {
         auto a = v.top();
         v.pop();
-        cout << a.first << " " << a.second << endl;
+        // cout << a.first << " " << a.second << endl;
 
         if(a.second == 0){
-            livres++;
-            v.push({a.first + m, 2});
+            livres.push(a.first+m);
+            
         }else if(a.second == 1){
-            if(livres > 0){
-                livres--;
+            
+            while (!livres.empty() && livres.top() < a.first)
+            {
+                livres.pop();
+            }
+            if(livres.size() > 0){
+                livres.pop();
             }else{
                 criados++;
             }
+
+            
             //não esquecer de apagar o evento de saida
-        }else if(a.second == 2){
-            livres--;
         }
 
     }
     
 
-    cout << criados << endl;
+    cout << n - criados << endl;
 
 
 }
