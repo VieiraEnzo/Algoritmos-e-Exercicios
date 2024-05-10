@@ -19,21 +19,20 @@ using ordered_multiset = tree<ll, null_type, less_equal<ll>, rb_tree_tag, tree_o
 
 void solve(){
     int n, m; cin >> n >> m;
-    string a, b; cin >> a >> b;
-    vector<int> num(2);
-    for(int i = 0; i < m; i++){num[b[i] - '0']++;}
+    string a,b; cin >> a >> b;
+    vector<int> dp(m+1);
+    dp[0] = 0;
 
-    int resp = 0;
-    for(int i = 0; i < n; i++){
-        if(num[a[i] - '0'] > 0){
-            num[a[i] - '0']--;
-            resp++;
-        }else{
-            break;  
+    int l = 0;
+    for(int i = 1; i <= m; i++){
+        dp[i] = dp[i-1];
+        if(l < n && a[l] == b[i-1]){
+            dp[i] = dp[i-1] + 1;
+            l++;
         }
     }
 
-    cout << resp << "\n";
+    cout << dp[m] << "\n";
 }
 
 
