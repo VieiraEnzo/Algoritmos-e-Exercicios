@@ -11,9 +11,12 @@ typedef unsigned long long ull;
 typedef pair<int,int> pii;
 typedef pair<ll,ll> pll;
 
+void solve(){
+    
+}
+
 int main(){
     fastio;
-
-    
-
+    int t; cin >> t;
+    while (t--) solve();
 }

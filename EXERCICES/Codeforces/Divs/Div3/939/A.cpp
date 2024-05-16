@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 #include <ext/pb_ds/tree_policy.hpp>
 #include <ext/pb_ds/assoc_container.hpp>
-#pragma GCC optimize("pragv")
 
 using namespace std;
 using namespace std;
@@ -19,7 +18,14 @@ using ordered_multiset = tree<ll, null_type, less_equal<ll>, rb_tree_tag, tree_o
 
 
 void solve(){
-    
+    int n, a, b; cin >> n >> a >> b;
+
+    if(b < 2*a){
+        if(n%2== 0) cout << n/2 * b << endl;
+        else cout << n/2 * b + a << endl;
+    }else{
+        cout << n * a << endl;
+    }
 }
 
 

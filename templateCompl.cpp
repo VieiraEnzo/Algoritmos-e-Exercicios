@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 #include <ext/pb_ds/tree_policy.hpp>
 #include <ext/pb_ds/assoc_container.hpp>
-#pragma GCC optimize("pragv")
 
 using namespace std;
 using namespace __gnu_pbds;
 
 #define endl "\n"
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
+#define all(x) (x).begin(), (x).end()
 
 typedef long long ll;
 typedef unsigned long long ull;
