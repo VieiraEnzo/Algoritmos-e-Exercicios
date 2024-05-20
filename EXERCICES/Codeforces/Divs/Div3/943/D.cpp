@@ -2,58 +2,53 @@
 
 using namespace std;
 
-#define int long long
 #define endl "\n"
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 #define all(x) (x).begin(), (x).end()
 
 typedef long long ll;
 typedef unsigned long long ull;
-typedef pair<int,int> pii;
+typedef pair<ll,ll> pii;
 typedef pair<ll,ll> pll;
 
-int n, k, Pb, Ps;
-vector<int> grafo(2e5 + 10);
-vector<int> marc(2e5 + 10);
-vector<int> arr(2e5 + 10);
-int ans = 0;
+int maxn = 2e5 + 10;
+ll n, k, Pb, Ps;
+vector<ll> grafo(maxn);
+vector<ll> marc(maxn);
+vector<ll> arr(maxn);
 
 
-void dfs(int v,int sum, int k){
+void dfs(ll v,ll sum, ll k, ll &ans){
     if(k == 0) return;
     marc[v] = 1;
     ans = max(ans, sum + arr[v] * k);
-    if(!marc[grafo[v]]) dfs(grafo[v],sum + arr[v], k - 1);
+    if(!marc[grafo[v]]) dfs(grafo[v], sum + arr[v], k - 1, ans);
 }
 
 void clear(){
-    grafo.clear();
-    marc.clear();
-    arr.clear();
-    ans = 0;
+    for(int i = 1; i <= maxn; i++) grafo[i] = marc[i] = arr[i] = 0;
 }
 
 void solve(){
 
-    clear();
     cin >> n >> k >> Pb >> Ps;
+    clear();
 
-    for(int i = 1; i <= n; i++){
-        int v; cin >> v;
+    for(ll i = 1; i <= n; i++){
+        ll v; cin >> v;
         grafo[i] = v;
     }
 
-    for(int i = 1; i <= n; i++) cin >> arr[i];
+    for(ll i = 1; i <= n; i++) cin >> arr[i];
     
-    dfs(Pb, 0, k);
-    int ans1 = ans;
-    for(int i = 0; i < 2e5 + 10; i++) marc[i] = 0;
-    ans = 0;
-    dfs(Ps, 0, k);
+    ll ansb = 0, anss = 0;
+    dfs(Pb, 0, k, ansb);
+    for(ll i = 1; i <= n; i++) marc[i] = 0;
+    dfs(Ps, 0, k, anss);
 
-    if(ans1 < ans){
+    if(ansb < anss){
         cout << "Sasha\n";
-    }else if(ans1 == ans){
+    }else if(ansb == anss){
         cout << "Draw\n";
     }else{
         cout << "Bodya\n";
@@ -64,6 +59,6 @@ void solve(){
 
 signed main(){
     fastio;
-    int t; cin >> t;
+    ll t; cin >> t;
     while (t--) solve();
 }
