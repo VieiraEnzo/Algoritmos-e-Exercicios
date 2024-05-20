@@ -12,14 +12,29 @@ typedef pair<int,int> pii;
 typedef pair<ll,ll> pll;
 
 void solve(){
-    int n; cin >> n;
-   // 1 ... n
-   // . . . .
-   // . . . .
-   // . . . .
-   // n ... i
-   
+    int x, y; cin >> x >> y;
+
+    int sobra = 0;
+    int scren = 0;
+    while (y > 0)
+    {
+        scren++;
+        if(y == 1) sobra += 11;
+        else sobra += 7;
+        y -= 2;
+    }
+
+    x -= sobra;
+
+    while (x > 0)
+    {
+        scren++;
+        x -= 15;
+    }
     
+    
+    cout << scren << "\n";
+
 }
 
 int main(){
