@@ -30,16 +30,16 @@ void solve(){
    vector<pair<int,int>> dir = {{1,0}, {0,1}, {-1,0}, {0,-1}};
    pair<int,int> init = {1,1};
 
-   do
+   while (n > 0)
    {
-        init = init + dir[i]*(n);
-        i++;i%=4;
-        n/=2;
         cout << init.first << " " << init.second << "\n";
-   }while (n > 0);
+        init = init + dir[i]*(n-1);
+        i++;i%=4;
+        n--;
+   }
    
 
-    cout << "\n";
+    // cout << "\n";
 }
 
 int main(){
