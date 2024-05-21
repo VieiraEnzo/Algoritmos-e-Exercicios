@@ -26,17 +26,30 @@ void solve(){
    // . . . .
    // . . . .
    // n ... i
-   int i = 0;
-   vector<pair<int,int>> dir = {{1,0}, {0,1}, {-1,0}, {0,-1}};
-   pair<int,int> init = {1,1};
 
-   while (n > 0)
-   {
-        cout << init.first << " " << init.second << "\n";
-        init = init + dir[i]*(n-1);
-        i++;i%=4;
-        n--;
+    if(n == 2){
+        cout << 1 << " " << 1 << "\n";
+        cout << 1 << " " << 2 << "\n";
+        return;
+    }
+
+    if(n == 3){
+        cout << 2 << " " << 1 << "\n";
+        cout << 2 << " " << 3 << "\n";
+        cout << 3 << " " << 1 << "\n";
+        return;
+    }
+
+    pii pa = {1,1};
+
+   for(int i = 0; i < n-2; i++){
+        cout << pa.first << " " << pa.second << "\n";
+        pa.first++; pa.second++;
    }
+
+
+   cout << n-1 << " " << n << "\n";
+   cout << n << " " << n << "\n";
    
 
     // cout << "\n";
