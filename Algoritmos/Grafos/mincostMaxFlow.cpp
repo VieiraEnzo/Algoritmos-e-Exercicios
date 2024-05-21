@@ -1,16 +1,5 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
-#define endl "\n"
-#define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
-#define all(x) (x).begin(), (x).end()
-
-typedef long long ll;
-typedef unsigned long long ull;
-typedef pair<int,int> pii;
-typedef pair<ll,ll> pll;
-
+//Min-cost max-flow. Assumes there is no negative cycle.
+//Time: O (F (V + E)logV ), being F the amount of flow.
 
 template<class flow_t, class cost_t> struct min_cost {
     static constexpr flow_t FLOW_EPS = flow_t(1e-10);
@@ -77,46 +66,3 @@ template<class flow_t, class cost_t> struct min_cost {
         } return make_pair(flow, tot_cost);
     } // hash=2 = 285527
 };
-
-
-int main(){
-
-    int n; cin >> n;
-
-    min_cost<int,double> so(2*n + 10);
-    
-    int s = 0;
-    int t = 2*n + 5;
-    for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= n; j++){
-            int temp; cin >> temp;
-            so.add_edge(i, j+n, 1, -log2(temp));
-        }
-    }
-
-    for(int i = 1; i <= n; i++){
-        so.add_edge(s, i, 1, 0);
-        so.add_edge(i+n, t, 1, 0);
-    }
-
-    auto p = so.run(s,t);
-
-    // cout << p.first << " " << pow(2, -p.second) << "\n";
-
-    vector<int> order(n+1);
-
-    for (int i = 0; i < so.m; ++i){
-        const int u = so.zu[i ^ 1], v = so.zu[i];
-        if(v == min(u,v)) continue;
-        if(so.capa[i] == 0 &&  u != s && u !=t && v != s && v !=t){
-            // cout << u << " " << v << "\n";
-            order[v-n] = u;
-        }
-    }
-
-    for(int i = 1; i <= n; i++){
-        cout << order[i] << " ";
-    }cout << "\n";
-    
-    
-}
