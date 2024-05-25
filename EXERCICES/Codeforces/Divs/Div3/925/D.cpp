@@ -8,21 +8,25 @@ using namespace std;
 
 typedef long long ll;
 typedef unsigned long long ull;
-typedef pair<int,int> pii;
+typedef pair<ll,ll> pii;
 typedef pair<ll,ll> pll;
 
 void solve(){
-    
+    ll n, x, y; cin >> n >> x >> y;
+    map<pair<ll,ll>, ll> mp;
+
+    ll sum = 0;
+    for(ll i = 0; i < n ; i++){
+        ll a; cin >> a;
+        sum += mp[{(x - a%x)%x, a%y}];
+        mp[{a%x, a%y}]++;
+    }
+
+    cout << sum << "\n";
 }
 
 int main(){
     fastio;
-
-    for(int i = 1; i < ; i++){
-        
-    }
-
-
-    int t; cin >> t;
+    ll t; cin >> t;
     while (t--) solve();
 }
