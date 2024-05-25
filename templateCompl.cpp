@@ -3,6 +3,17 @@
 #include <ext/pb_ds/assoc_container.hpp>
 
 using namespace std;
+
+#ifdef local
+    #include "/home/enzo/Documents/Prog/OBItraining/debug.h"
+    #define pr(...) debug(#__VA_ARGS__, __VA_ARGS__)
+    #define prs(...) debug_nameless(__VA_ARGS__)
+#else
+    #define pr(...) 69
+    #define prs(...) 69
+#endif
+
+
 using namespace __gnu_pbds;
 
 #define endl "\n"
