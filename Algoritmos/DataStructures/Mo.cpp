@@ -1,4 +1,4 @@
-struct Mo{
+template<typename T> struct Mo{
     //TODO: declare the data structures
     Mo(){
 

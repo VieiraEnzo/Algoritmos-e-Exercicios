@@ -1,4 +1,4 @@
-struct pref2D{
+template<typename T> struct pref2D{
     int n, m;
     vector <vector<int>> mat, pref;
 

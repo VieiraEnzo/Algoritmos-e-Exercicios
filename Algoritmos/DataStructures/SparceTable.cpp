@@ -1,4 +1,4 @@
-struct SparseTable{
+template<typename T> struct SparseTable{
     int K = 25, n;
     vector <vector<int>> st; //st[i][j] = min on range [j, j + 2^i-1]
     vector <int> lg2; //lg2[i] = floor(log2(i))
@@ -27,3 +27,4 @@ struct SparseTable{
         return min(st[i][l], st[i][r-(1<<i)+1]);
     }
 }; 
+template<typename T>
