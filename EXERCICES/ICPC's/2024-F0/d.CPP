@@ -11,6 +11,8 @@ using namespace std;
     #define prs(...) 69
 #endif
 
+
+#define int long long
 #define endl "\n"
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 #define all(x) (x).begin(), (x).end()
@@ -20,28 +22,19 @@ typedef unsigned long long ull;
 typedef pair<int,int> pii;
 typedef pair<ll,ll> pll;
 
-int main(){
+signed main(){
     fastio;
-    int n; cin >> n;
-    map<string , int> nomes;
-    map<int, string> rnomes;
-    vector<string> ordem(n);
-    set<int> s;
-    for(int i = 0; i < n; i++){
-        cin >> ordem[i];
+    int e, v; cin >> e >> v;
+    int h = (19 + (e/v))%24;
+    int min = ((e * 60)/v)%60;
+    if(h < 10){
+        cout << 0;
     }
-
-    for(int i = 0; i < n; i++){
-        string nome; cin >> nome;
-        nomes[nome] = i;
-        rnomes[i] = nome;
-        s.insert(i);
+    cout << h << ":";
+    if(min < 10){
+        cout << 0;
     }
+    cout << min << "\n";
+    
 
-    for(int i = 0; i < n-1; i++){
-        cout << rnomes[*s.begin()] << " ";
-        s.erase(nomes[ordem[i]]);
-    }
-    cout << rnomes[*s.begin()] << "\n";
-
-}   
+}

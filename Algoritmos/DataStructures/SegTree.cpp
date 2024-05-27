@@ -1,51 +1,61 @@
-//SegTree
-//Update - O(n)
-//Querry - O(n)
-
-
-template<typename T> struct SegTree{
+template <typename T> struct SegTree{ //segtree 0 indexada sem lazy
     int n;
-    vector<T> tree; 
+    struct Node{
+        int val;
+        Node operator+(Node other) const{
+            return {this->val + other.val};
+        }
+    };
+    Node neutral = {0};
+    vector <Node> t;
 
-    int neutral = 0; //elemento neutro da soma
+    SegTree(vector <int> a){
+        n = a.size();
+        t.resize(4*n);
+        build(a, 1, 0, n-1);
+    }
 
-    T join(T a, T b){return a + b;} //f para juntar 2 elementos da arvore
-
-    SegTree(int n) : n(n), tree(4*(n+1)){}
-
-    //Coda build é opcional, obtem-se o mesmo resultado em O(nlog)
-    //fazendo um update para cada nó
-    void build(vector<T> &a, int node, int l, int r){
-        if(l == r){
-            tree[node] = a[l];
-        } else{
-            int m = (l + r)/2;
-            build(a, 2*node, l , m);       //constroi no esquedo
-            build(a, 2*node+1, m+1, r);    //constroi no direito
-            tree[node] = tree[2*node] + tree[2*node+1];
+    void build(vector <int>& a, int v, int tl, int tr) {
+        if (tl == tr) {
+            t[v].val = a[tl];
+        } else {
+            int tm = (tl + tr) / 2;
+            build(a, v*2, tl, tm);
+            build(a, v*2+1, tm+1, tr);
+            t[v] = t[v*2] + t[v*2+1];
         }
     }
 
-    T query(int node, int l, int r, int a , int b){
-        if(a>r || b<l) return neutral; //verificar se nó pertence ao range
-        if(a<=l && b>=r) return tree[node]; //usar se estiver contido
-        int mid = (l+r)/2;
-        return join(query(2*node, l , mid, a, b) , 
-                        query(2*node+1, mid+1, r, a, b));
+    Node query(int l, int r){
+        return query(1, 0, n-1, l, r);
     }
 
-    //update on a single point
-    void update(int node, int l ,int r, int pos, T val){
-        if(l == r){
-            tree[node] = val;
-        } else{
-            int m = (l + r)/2;
-            if(pos <= m)
-                update(2*node, l, m, pos, val);
+    Node query(int v, int tl, int tr, int l, int r){
+        if (l > r) 
+            return neutral;
+        if (l == tl && r == tr) {
+            return t[v];
+        }
+        int tm = (tl + tr) / 2;
+        return query(v*2, tl, tm, l, min(r, tm))
+            + query(v*2+1, tm+1, tr, max(l, tm+1), r);
+    }
+
+    void update(int pos, int val){
+        update(1, 0, n-1, pos, val);
+
+    }
+
+    void update(int v, int tl, int tr, int pos, int new_val){
+        if (tl == tr) {
+            t[v].val = new_val;
+        } else {
+            int tm = (tl + tr) / 2;
+            if (pos <= tm)
+                update(v*2, tl, tm, pos, new_val);
             else
-                update(2*node+1, m+1, r, pos, val);
-            tree[node] = join(tree[2*node] ,tree[2*node+1]);
-        }   
+                update(v*2+1, tm+1, tr, pos, new_val);
+            t[v] = t[v*2] + t[v*2+1];
+        }
     }
-
 };
