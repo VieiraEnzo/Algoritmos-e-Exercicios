@@ -12,6 +12,7 @@ using namespace std;
 #endif
 
 #define endl "\n"
+#define int long long
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 #define all(x) (x).begin(), (x).end()
 
@@ -20,7 +21,7 @@ typedef unsigned long long ull;
 typedef pair<int,int> pii;
 typedef pair<ll,ll> pll;
 
-int main(){
+signed main(){
     fastio;
 
     

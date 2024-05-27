@@ -17,6 +17,7 @@ using namespace std;
 using namespace __gnu_pbds;
 
 #define endl "\n"
+#define int long long
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 #define all(x) (x).begin(), (x).end()
 
@@ -27,7 +28,7 @@ typedef pair<ll,ll> pll;
 using ordered_set = tree<ll, null_type, less<ll>, rb_tree_tag, tree_order_statistics_node_update>;
 using ordered_multiset = tree<ll, null_type, less_equal<ll>, rb_tree_tag, tree_order_statistics_node_update>;
 
-int main(){
+signed main(){
     fastio;
 
     
