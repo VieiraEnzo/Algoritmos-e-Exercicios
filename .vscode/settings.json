@@ -21,6 +21,7 @@
         "regex": "cpp",
         "valarray": "cpp",
         "iosfwd": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "bitset": "cpp"
     }
 }
