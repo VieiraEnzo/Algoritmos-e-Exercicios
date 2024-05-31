@@ -57,6 +57,7 @@ void solve(){
             int dif = r[i-1].bitSig - r[i].bitSig;
             r[i].bitSig += dif; ans += dif;
         }
+        if(r[i].bitSig > r[i-1].bitSig) continue;
         if(r[i].maxForm < r[i-1].maxForm){r[i].bitSig++; ans++;}
     }
 
