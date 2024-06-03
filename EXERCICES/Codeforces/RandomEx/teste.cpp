@@ -22,56 +22,49 @@ typedef unsigned long long ull;
 typedef pair<int,int> pii;
 typedef pair<ll,ll> pll;
 
-struct item
-{
-    int bitSig;
-    int maxForm;
-};
 
 
-void solve(){
-    int n; cin >> n;
-    vector<item> r(n);
-    int base = 0;
-    for(int i = 0; i < n;i++){
-        int maxI = 0;
-        int temp; cin >> temp;
-        for(int j = 31; j >= 0; j--){
-            if(temp & (1<<j)){
-                maxI = j; break;
-            }
-        }
-        base = max(base, maxI);
-        r[i] = {maxI, temp};
-    }
-
-    for(int i = 0; i < n; i++){
-        int dif = base - r[i].bitSig;
-        r[i].maxForm <<= dif;
-    }
-
-    int ans = 0;
-
-    for(int i = 1; i < n; i++){
-        if(r[i].bitSig < r[i-1].bitSig){
-            int dif = r[i-1].bitSig - r[i].bitSig;
-            r[i].bitSig += dif; ans += dif;
-        }
-        if(r[i].bitSig > r[i-1].bitSig) continue;
-        if(r[i].maxForm < r[i-1].maxForm){r[i].bitSig++; ans++;}
-    }
-
-    // for(int i = 0; i < n; i++){
-    //     cout << r[i].bitSig << " " << r[i].maxForm << "\n";
-    // }
-
-    cout << ans << "\n";
-
-}
 
 signed main(){
     fastio;
-    int t; cin >> t;
-    while (t--)solve();
+    int n, m, k; cin >> n >> m >> k;
+
+    set<pair<int,pii>> entradas;
+    vector<vector<pii>> saidas(n+1);
+    for(int i = 0; i < m; i++){
+        int d, f, t, c;
+        cin >> d >> f >> t >> c;
+        if(f == 0){ //saindo de 0
+            saidas[t].push_back({c,d});
+        }else{
+            entradas.insert({d,{c,t}});
+        }
+    }
+
+    for(int i = 0; i < n; i++){
+        sort(saidas[i].rbegin(),saidas[i].rend());
+    }
+
+    int sol = 0;
+    int MaxDias = 0;
+    int qts = 0;
+    vector<int> marc(n+1);
+    for(auto a : entradas){
+        int d = a.first;
+        int c = a.second.first;
+        int t = a.second.second;
+        if(!marc[t]){
+            entradas.erase(a);
+            marc[t] = 1;
+            sol += c;
+            MaxDias = max(MaxDias, d);
+            qts++;
+        }
+    }
+
+    if(qts != n){
+        cout << -1 << "\n";
+        return 0;
+    }
     
 }
