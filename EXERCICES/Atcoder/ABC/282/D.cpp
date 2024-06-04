@@ -31,8 +31,7 @@ pair<int, pair<int,int>> bfs(int v){
     q.push(v);
     color[v] = 0;
     bool Bipart= true;
-    int numV = 1;
-    int numA = 0;
+    int numV = 1, numA = 0;
 
     while (!q.empty())
     {
@@ -64,20 +63,27 @@ signed main(){
         grafo[v].push_back(u);
     }
 
-    int ans = 0; int removedV = 0, removedA = 0;
+
+    vector<pair<int,int>> compConex;
     for(int i = 1; i <= n; i++){
         if(color[i] == -1){
             auto num = bfs(i);
-            if(num.first == 0){
-                removedV += num.second.first;
-                removedA += num.second.second;
+            if(num.first == 1){
+                compConex.push_back(num.second);
             }
-            pr(i, num);
         }
     }
     
-    // pr(((n - removedV)/2  * ((n - removedV) +1)/2), (m - removedA)); 
+    // pr(compConex);
 
-    cout << ( ((n - removedV)/2)  * (((n - removedV)+1)/2) ) - (m - removedA) << "\n";
+    int ans = 0;
+    int sumVert = 0;
+    for(int i = 0; i < (int)compConex.size(); i++){
+        ans += sumVert * compConex[i].first; //Dessa componente com todas as outras
+        ans += ((compConex[i].first/2) *  ((compConex[i].first+1)/2)) - compConex[i].second; //Vertices Pretos com os brancos
+        sumVert += compConex[i].first;
+        // pr(sumVert, ans);
+    }
 
+    cout << ans << "\n";
 }
