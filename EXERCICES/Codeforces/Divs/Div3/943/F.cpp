@@ -24,27 +24,37 @@ typedef pair<ll,ll> pll;
 
 void solve(){
     int n, q; cin >> n >> q;
-    vector<int> v(n+1);
-    for(int i = 1; i <= n; i++) cin >> v[i];
-    vector<bitset<30>> sv(n+1);
-
+    vector<int> pref(n+1);
+    set<pair<int,int>> s;
+    pref[0] = 0;
+    s.insert({pref[0], 0});
     for(int i = 1; i <= n; i++){
-        sv[i] = sv[i-1];
-        for(int i = 0; i < 30; i++){
-            sv[i] ^= v[i];
-        }
-    }
-
-    while (q--)
-    {
-        int l,r; cin >> l >> r;
-        if((sv[l] & sv[r]) == 0 && l-r > 1){
-            cout << "YES\n";
-        }
-        cout << "NO\n";
-        
+        cin >> pref[i];
+        pref[i] ^= pref[i-1];
+        s.insert({pref[i], i});
     }
     
+    while (q--)
+    {
+        int l, r; cin >> l >> r;
+        if((pref[r] ^ pref[l-1]) == 0){
+            cout << "Yes\n";
+        }else{
+            pr(l, r);
+            int x = pref[r] ^ pref[l-1];
+            auto it = s.lower_bound({x ^ pref[l-1], l});
+            pr(*it);
+            if(it == s.end() || (*it).second >= r || (*it).first != (x ^ pref[l-1])) { cout << "No\n"; continue;}
+            l = (*it).second + 1;
+            it = s.lower_bound({x ^ pref[l-1], l});
+            pr(*it);
+            if(it == s.end() || (*it).second >= r  || (*it).first != (x ^ pref[l-1])){ cout << "No\n"; continue;}
+            cout << "Yes\n";
+        }
+
+    }
+    
+
 }
 
 signed main(){
