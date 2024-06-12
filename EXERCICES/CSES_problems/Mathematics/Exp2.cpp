@@ -2,7 +2,11 @@
 using namespace std;
 typedef long long ll;
 
-ll fastexp(ll a, ll b, ll mod = 1e9 + 7){
+//Teorema de Fermat
+
+int mod = 1e9+7;
+
+ll fastexp(ll a, ll b, ll mod){
     if(b == 0) return 1;
     ll e = a;b--;
     for(ll i = 0; i < 32; i++){
@@ -20,7 +24,8 @@ int main(){
     while (n--)
     {
         ll a, b,c; cin >> a >> b >> c;
-        cout << fastexp(a,fastexp(b,c)) << endl;
+        ll k = fastexp(b,c, mod-1);
+        cout << fastexp(a,k, mod) << "\n";
     }
     
 }
