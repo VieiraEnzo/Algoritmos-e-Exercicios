@@ -26,5 +26,4 @@ template<typename T> struct SparseTable{
         int i = lg2[r-l+1];
         return min(st[i][l], st[i][r-(1<<i)+1]);
     }
-}; 
-template<typename T>
+};
