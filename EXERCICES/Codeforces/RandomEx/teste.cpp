@@ -11,8 +11,6 @@ using namespace std;
     #define prs(...) 69
 #endif
 
-#define endl "\n"
-#define int long long
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 #define all(x) (x).begin(), (x).end()
 
@@ -52,22 +50,19 @@ struct SegTree{ //segtree 0 indexada sem lazy
     }
   }
 
-  int query(int l, int r, int x){
-    return query(1, 0, n-1, l, r, x);
+  Node query(int l, int r){
+    return query(1, 0, n-1, l, r);
   }
 
-  int query(int v, int tl, int tr, int l, int r, int x){
-    pr(l, r, tl, tr,  t[v].val);
+  Node query(int v, int tl, int tr, int l, int r){
     if (l > r) 
-      return 0;
+      return neutral;
     if (l == tl && r == tr) {
-      if(t[v].val == x) return 0;
-      else if(__gcd(t[v].val , x)  == x) { return 1;}
-      // se não dividir os intervalos
+      return t[v];
     }
     int tm = (tl + tr) / 2;
-    return query(v*2, tl, tm, l, min(r, tm), x)
-      + query(v*2+1, tm+1, tr, max(l, tm+1), r, x);
+    return query(v*2, tl, tm, l, min(r, tm))
+      + query(v*2+1, tm+1, tr, max(l, tm+1), r);
   }
 
   void update(int pos, int val){
@@ -88,7 +83,7 @@ struct SegTree{ //segtree 0 indexada sem lazy
   }
 };
 
-signed main(){
+int main(){
     fastio;
     int n; cin >> n;
     vector<int> a(n);
@@ -97,20 +92,39 @@ signed main(){
     SegTree seg(a);
 
     int q; cin >> q;
-    while (q--)
+    for(int i = 0; i < q; i ++)
     {
         int type; cin >> type;
         if(type == 1){
-            int l, r, x; cin >> l >> r >> x;
-            l--;r--;
-            pr(l,r ,x);
-            int resp = seg.query(l,r,x);
-            if(resp == 0 || resp == 1) cout << "YES\n";
+            int a, b, x; cin >> a >> b >> x;
+            a--, b--;
+            if(seg.query(a,b).val % x == 0) {cout << "YES\n"; continue;}
+            
+            auto bb = [&] (int l, int r, int it){
+              while (r - l > 1)
+              {
+                int mid = (l + r) / 2;
+                if(seg.query(it,mid).val % x != 0){
+                    r = mid;
+                }else{
+                    l = mid;
+                }
+              }
+              return r;
+            };
+            
+            int l = a-1, r = b+1, it = a;
+            int up = bb(l, r, it);
+            if(up == b+1) {cout << "YES\n"; continue;} 
+
+            if(seg.query(up+1,b).val % x == 0) cout << "YES\n";
             else cout << "NO\n";
+
         }else{
+
           int i, y; cin >> i >> y;
           i--;
-          seg.update(i,y);
+          seg.update(i,y);  
         }
     }
     
