@@ -9,7 +9,7 @@ template<typename T> struct Kruskal
             int p = arr[0], a = arr[1], b = arr[2];
             if(find(a) != find(b)){
                 uu(a,b);
-                //dicionar aresta
+                //adicionar aresta
             }
         }
     }
