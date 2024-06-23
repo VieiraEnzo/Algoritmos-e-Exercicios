@@ -16,21 +16,21 @@ template<typename T> struct ArticPont{
         grafo[b].push_back(a);
     }
 
-    void dfs(int x, int p){
+    void dfs(ll x, ll p){
         marc[x] = 1;
         tin[x] = low[x] = ++count;
-        int children = 0;
-        for(int i : grafo[x]){
-            if(i == p) continue;
-            if(marc[i]){
-                low[x] = min(low[x], tin[x]);
+        ll children = 0;
+        for(ll viz : grafo[x]){
+            if(viz == p) continue;
+            if(marc[viz]){
+                low[x] = min(low[x], tin[viz]);
             }else{
-                dfs(i,x);
-                low[x] = min(low[x], low[i]);
-                if(low[i] > tin[x]){
-                    bridges.push_back({min(i,x), max(i, x)});
+                dfs(viz,x);
+                low[x] = min(low[x], low[viz]);
+                if(low[viz] > tin[x]){
+                    bridges.push_back({min(viz,x), max(viz, x)});
                 }
-                if(low[i] >= tin[x] && p) artic[x] = 1;
+                if(low[viz] >= tin[x] && p) artic[x] = 1;
                 children++;
             }
         }
@@ -38,7 +38,7 @@ template<typename T> struct ArticPont{
     }
 
     void find_brig_and_artc(){
-        for(int i=1; i<=n; i++){
+        for(ll i=1; i<=n; i++){
             if(!marc[i]) dfs(i,0);
         }   
     }
@@ -54,8 +54,8 @@ template<typename T> struct ArticPont{
     void BrigeTree(){
         int comp = 0;
         for(auto &b : bridges){
-            if(!BTcomponent[b.first])  BTdfs(b.first, ++comp, b.first);
-            if(!BTcomponent[b.second]) BTdfs(b.second, ++comp, b.second);
+            if(!BTcomponent[b.first])  BTdfs(b.first, ++comp, b.second);
+            if(!BTcomponent[b.second]) BTdfs(b.second, ++comp, b.first);
             BT[BTcomponent[b.first]].push_back(BTcomponent[b.second]);
             BT[BTcomponent[b.second]].push_back(BTcomponent[b.first]);
         }
