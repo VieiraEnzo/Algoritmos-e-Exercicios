@@ -1,78 +1,28 @@
-template<typename T> struct Euler{ // Euler euler(n, m, 0); O(V+E)
-    int n, m, cont=0, dir;
-    //dir==0, grafo não direcionado / dir==1, grafo direcionado
-    vector<vector<pair<int, int> > > vec;
-    vector<int> grau, in, out, id;
-    Euler(int n, int m, int dir) : n(n), m(m), dir(dir), vec(n+1), grau(n+1),
-                                    id(n+1), in(n+1), out(n+1) {}
-    void add_edge(int v, int u){
-        vec[v].push_back({u, cont});
-        grau[v]++, out[v]++, in[u]++;
-        if(!dir){
-            vec[u].push_back({v, cont});
-            grau[u]++;
-        }
-        cont++;
-    }
-    int check_circuit(){
-        if(!dir){
-            for(int i=1; i<=n; i++){
-                if(grau[i]&1) return 0;
-            }
-            return 1;
-        }
-        for(int i=1; i<=n; i++){
-            if(in[i]!=out[i]) return 0;
-        }
-        return 1;
-    }
-    int check_path(){
-        if(!dir){
-            int impar=0;
-            for(int i=1; i<=n; i++){
-                impar+=(grau[i]&1);
-            }
-            if(!impar || impar==2) return 1;
-            return 0;
-        }
-        int maior=0, menor=0;
-        for(int i=1; i<=n; i++){
-            if(out[i]-in[i]==1){
-                if(maior) return 0;
-                maior++;
-            }
-            else if(in[i]-out[i]==1){
-                if(menor) return 0;
-                menor++;
-            }else if(in[i]!=out[i]){
-                return 0;
-            }
-        }
-        return 1;
-    }
-    vector<int> find_euler(){
-        vector<int> fila, ans;
-        //check the initial and final vertices
-        fila.push_back(1);
-        while(!fila.empty()){
-            int v=fila.back();
-            while(!vec[v].empty() && id[vec[v].back().second]){
-                grau[v]--;
-                vec[v].pop_back();
-            }
-            if(!grau[v]){
-                ans.push_back(v);
-                fila.pop_back();
-                continue;
-            }
-            pair<int, int> u=vec[v].back();
-            vec[v].pop_back();
-            grau[v]--;
-            id[u.second]=1;
-            fila.push_back(u.first);
-        }
-        reverse(ans.begin(), ans.end());
-        if((int)ans.size()!=m+1) ans.clear();
-        return ans;
-    }
-};
+/**
+ * Author: Simon Lindholm
+ * Date: 2019-12-31
+ * License: CC0
+ * Source: folklore
+ * Description: Eulerian undirected/directed path/cycle algorithm.
+ * Input should be a vector of (dest, global edge index), where
+ * for undirected graphs, forward/backward edges have the same index.
+ * Returns a list of nodes in the Eulerian path/cycle with src at both start and end, or
+ * empty list if no cycle/path exists.
+ * To get edge indices back, add .second to s and ret.
+ * Time: O(V + E)
+ * Status: stress-tested
+ */
+vector<int> eulerWalk(vector<vector<pii>>& gr, int nedges, int src=0) {
+	int n = gr.size();
+	vector<int> D(n), its(n), eu(nedges), ret, s = {src};
+	D[src]++; // to allow Euler paths, not just cycles
+	while (!s.empty()) { ///start-hash
+		int x = s.back(), y, e, &it = its[x], end = int(gr[x].size());
+		if (it == end){ ret.push_back(x); s.pop_back(); continue; }
+		tie(y, e) = gr[x][it++];
+		if (!eu[e])
+			D[x]--, D[y]++, eu[e] = 1, s.push_back(y);
+	} ///end-hash
+	for(auto &x : D) if (x < 0 || int(ret.size()) != nedges+1) return {};
+	return {ret.rbegin(), ret.rend()};
+}

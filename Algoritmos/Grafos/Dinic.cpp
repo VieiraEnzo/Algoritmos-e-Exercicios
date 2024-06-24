@@ -1,3 +1,10 @@
+/*
+Flow algorithm with complexity O(V E log U ) where U =
+max |cap|. O(min(E^1/2 , V^2/3 )E) if U = 1; O( V^1/2 E) for bipartite match-
+ing. To obtain each partition A and B of the cut look at lvl, for v ⊂ A,
+lvl[v] > 0, for u ⊂ B, lvl[u] = 0.
+*/
+
 template<typename T> struct Edge{
     int v, u;
     ll cap, flow = 0;
