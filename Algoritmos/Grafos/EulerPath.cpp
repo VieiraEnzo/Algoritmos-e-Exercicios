@@ -11,6 +11,20 @@
  * To get edge indices back, add .second to s and ret.
  * Time: O(V + E)
  * Status: stress-tested
+ * 
+ * Condições para a existencia de um caminho/cicutio euleriano:
+ * 
+ *          |        Direcionado            |         Não Direcionado
+ * ---------+-------------------------------+---------------------------
+ *          | "existem 0 ou 1 vértices      |   
+ * Caminho  |  com difrença 1 entre grau    | "existem 0 ou 2 vértices de grau impar"
+ *          |  de entrada e saida"          |
+ * ---------+-------------------------------+------------------------------------- 
+ *          | "Grau de entrada e saida      |
+ * Circuito |  de todos os vértices         | "não existe vértice de grau impar"
+ *          |  são iguais"                  | 
+ * 
+ 
  */
 vector<int> eulerWalk(vector<vector<pii>>& gr, int nedges, int src=0) {
 	int n = gr.size();
