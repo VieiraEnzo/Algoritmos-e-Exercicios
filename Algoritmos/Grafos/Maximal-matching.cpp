@@ -1,4 +1,5 @@
 //Finds maximal matching in O(V * E) time 
+//Algoritmo de Kuhn
 
 template<typename T> struct bm_t
 {
