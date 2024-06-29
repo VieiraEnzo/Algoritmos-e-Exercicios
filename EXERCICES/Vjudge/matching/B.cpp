@@ -20,41 +20,46 @@ typedef unsigned long long ull;
 typedef pair<int,int> pii;
 typedef pair<ll,ll> pll;
 
-using vi = vector<int>;
-bool dfs(int a, int L, const vector<vi> &g, vi &btoa, vi &A, vi &B) { ///start-hash
-    if (A[a] != L) return 0;
-    A[a] = -1;
-    for(auto &b : g[a]) if (B[b] == L + 1) {
-        B[b] = 0;
-        if (btoa[b] == -1 || dfs(btoa[b], L+1, g, btoa, A, B))
-            return btoa[b] = a, 1;
+struct bm_t
+{
+    int N, M, T;
+    vector<vector<int>> grafo;
+    vector<int> match, seen;
+    bm_t(int a, int b) : N(a), M(a+b), T(0), grafo(M),
+                        match(M, -1), seen(M, -1) {}
+    
+    void add_edge(int a, int b){
+        grafo[a].push_back(b + N);
     }
-    return 0;
-} ///end-hash
-int hopcroftKarp(const vector<vi> &g, vi &btoa) { ///start-hash
-    int res = 0;
-    vector<int> A(g.size()), B(int(btoa.size())), cur, next;
-    for (;;) {
-        fill(A.begin(), A.end(), 0), fill(B.begin(), B.end(), 0);
-        cur.clear();
-        for(auto &a : btoa) if (a != -1) A[a] = -1;
-        for (int a = 0; a < g.size(); ++a) if (A[a] == 0) cur.push_back(a);
-        for (int lay = 1;; ++lay) { 
-            bool islast = 0; next.clear();
-            for(auto &a : cur) for(auto &b : g[a]) {
-                if (btoa[b] == -1) B[b] = lay, islast = 1;
-                else if (btoa[b] != a && !B[b])
-                    B[b] = lay, next.push_back(btoa[b]);
-            }
-            if (islast) break;
-            if (next.empty()) return res;
-            for(auto &a : next) A[a] = lay;
-            cur.swap(next);
+
+    bool dfs(int cur){
+        if(seen[cur] == T) return false;
+        seen[cur] = T;
+        for(int nxt : grafo[cur]) if(match[nxt] == -1){
+            match[nxt] = cur;
+            match[cur] = nxt;
+            return true;
         }
-        for(int a = 0; a < int(g.size()); ++a)
-            res += dfs(a, 0, g, btoa, A, B);
+        for(int nxt : grafo[cur]) if(dfs(match[nxt])){
+            match[nxt] = cur;
+            match[cur] = nxt;
+            return true;
+        }
+        return false;
     }
-} ///end-hash
+
+    int solve(){
+        int res = 0;
+        for(int cur = 1; cur;){
+            cur = 0; ++T;
+            for(int i = 0; i < N; ++i) if(match[i] == -1)
+                cur += dfs(i);
+            res += cur;
+        }
+        return res;
+    }
+
+};
 
 signed main(){
     fastio;
@@ -70,16 +75,13 @@ signed main(){
     auto f = [&](int x){
         //Verificar se existe um matching para
         // o potencial n
-        vector<vector<int>> graph(m);
-        vector<int> btoa(x+1, -1);
-        // bm_t bm(m,x+1);
+        bm_t bm(m,x+1);
         for(int i = 0; i < n; i++){
             if(potential[i] <= x && !removed[i]){
-                // bm.add_edge(clubs[i]-1, potential[i]);
-                graph[clubs[i]-1].push_back(potential[i]);
+                bm.add_edge(clubs[i]-1, potential[i]);
             }           
         }
-        return hopcroftKarp(graph, btoa) == (x+1);
+        return bm.solve() == (x+1);
     };
 
     auto solve = [&](){
@@ -96,9 +98,13 @@ signed main(){
         return l;
     };
 
-    // cout << "Oi " << f(3) << " "  << f(2) << "\n"; 
 
-    int d; cin >> d;
+    int d; cin >> d; 
+    vector<int>alunosSaindo(d);
+    for(int i = 0; i < d; i++)cin >> alunosSaindo[d];
+    reverse(all(alunosSaindo));
+    
+
     while (d--)
     {
         int k; cin >> k; k--;
