@@ -63,62 +63,37 @@ struct bm_t
 
 };
 
-int n;
-int ID(int i, int j){
-    return i + n*j;
-}
 
-int CorLinha(int cor, int linha){
-    // 0...n-1 : (n) linhas
-    // 0...2*n : 2*n+1 cores
-    //Total = 2*n² + n vértices
-    return (2*n+1)*linha + cor;
-}
+void solve(int t){
 
-int CorColuna(int cor, int coluna){
-    const int pref = (2*n+1)*n + n + 1;
-    return pref + (2*n+1)*coluna + cor;
-}
-
-void solve(){
-    //Problema de minimum vertex cover
-    //Podem existir n³ arestas
-    //Não é bipartido
-    //Para cada linha e coluna Vértices com esses
-    //números
-    //Para cada celula, uma aresta ligando a cor em
-    //sua linha e coluna respectivamente
-    //V = 2*N * Ci + N²
-    //E = 2*N
-    //Achar minimum vertex cover
-    //O(N³) * T
-    cin >> n;
-    vector<vector<int>> mat(n, vector<int> (n));
+    int n; cin >> n;
+    vector<vector<pair<int,int>>> clr_of_pts(2*n + 10);
 
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
             int temp; cin >> temp;
-            mat[i][j] = temp + n;
+            clr_of_pts[temp+n].push_back({i,j});
         }
     }
 
-    bm_t bm(n*n,4*n*n);
-
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            bm.add_edge(ID(i,j), CorLinha(mat[i][j], i));
-            bm.add_edge(ID(i,j), CorColuna(mat[i][j], j));
+    int ans = 0;
+    for(int i = 0; i <= 2*n; i++){
+        bm_t bm(n,n);
+        for(auto p : clr_of_pts[i]){
+            bm.add_edge(p.first, p.second);
         }
+        ans += bm.solve();
     }
     
 
-    cout << bm.solve() << "\n";
+    cout << "Case #" << t << ": " <<  n*n - ans << "\n";
 }
 
 
 
 signed main(){
     fastio;
+    int i = 0;
     int t; cin >> t;
-    while (t--) solve();
+    while (t--) solve(++i);
 }

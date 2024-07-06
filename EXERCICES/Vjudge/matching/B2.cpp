@@ -59,6 +59,10 @@ struct bm_t
         return res;
     }
 
+    int test(int pref){
+
+    }
+
 };
 
 
@@ -73,83 +77,45 @@ signed main(){
     for(int i = 1; i <= n; i++) cin >> potential[i];
     for(int i = 1; i <= n; i++) {cin >> clubs[i]; clubs[i]--;}
 
-    auto f = [&](int x){
-        //Verificar se existe um matching para
-        // o potencial n
-        bm_t bm(m,x+1);
-        for(int i = 1; i <= n; i++){
-            if(potential[i] <= x && !removed[i]){
-                bm.add_edge(clubs[i], potential[i]);
-            }           
-        }
-        return bm.solve() == (x+1);
-    };
-
-    //Retorna o maior número possivel de fazer
-    auto solve = [&](){
-        int l = -1, r = 5001;
-        while (r - l > 1)
-        {
-            int mid = (l+r)/2;
-            if(f(mid)){
-                l = mid;
-            }else{
-                r = mid;
-            }
-        }
-        return l;
-    };
-
-
     int d; cin >> d;
     vector<int> AlunosRemovidos(d);
     for(int i = d-1; i >=0; i--){
         cin >> AlunosRemovidos[i];
         removed[AlunosRemovidos[i]] = 1;
-    }   
+    }       
 
-
-    vector<vector<int>> clubesDePotencial(5001);
-
+    vector<vector<int>> clubesDePot(5001);
     //Monta solução Otima por enquanto
-    int cur = solve();
     bm_t bm(5001,m);
     for(int i = 1; i <= n; i++){
-        if(potential[i] <= cur && !removed[i]){
-            bm.add_edge(potential[i], clubs[i]);
-        }else if(!removed[i]){
-            clubesDePotencial[potential[i]].push_back(clubs[i]);
+        if(!removed[i]){
+            clubesDePot[potential[i]].push_back(clubs[i]);
         }
     }
-    assert(bm.solve() == cur + 1);
 
-    // cout << "oi " << bm.solve() << " " << cur  << "\n";
+    while(!clubesDePot[0].empty()){
+            bm.add_edge(0, clubesDePot[0].back());
+            clubesDePot[0].pop_back();
+    }
 
     //Adicionando alunos:
     vector<int> resp;
+    int pref = 0;
     for(int i = 0; i < d; i++){
-        resp.push_back(cur + 1); //Primeiro rodamos o algoritmo, depois adicionamos arestas
-        int aluno = AlunosRemovidos[i];
-        
-        if(potential[aluno] == cur+1){
-            bm.add_edge(cur+1, clubs[aluno]);
-        }else if(potential[aluno] <= cur){
-            bm.add_edge(potential[aluno], clubs[aluno]);            
-        }else{
-            clubesDePotencial[potential[aluno]].push_back(clubs[aluno]);
-        }
 
-        int tam = 1;
-        while(tam){
-            while(!clubesDePotencial[cur+1].empty()){
-                int clube = clubesDePotencial[cur+1].back();
-                bm.add_edge(cur+1, clube);
-                clubesDePotencial[cur+1].pop_back();
+        while (bm.solve())
+        {
+            while(!clubesDePot[pref].empty()){
+                bm.add_edge(pref, clubesDePot[pref].back());
+                clubesDePot[pref].pop_back(); 
             }
-            tam = bm.solve();
-            cur += tam;
+            pref++;
         }
+        
+        resp.push_back(pref);
 
+        int aluno = AlunosRemovidos[i];
+        bm.add_edge(potential[aluno], clubs[aluno]);
     }
 
     reverse(all(resp));
