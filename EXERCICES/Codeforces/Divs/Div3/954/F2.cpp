@@ -33,7 +33,7 @@ struct ArticPont{
     vector<ll> BTcomponent;
 
     ArticPont(ll n) : n(n), grafo(n+1), marc(n+1), tin(n+1), low(n+1), artic(n+1), 
-                        BTcomponent(n+1){}
+                        BTcomponent(n+1), dp(n+1){}
 
     void add_edge(ll a, ll b){
         grafo[a].push_back(b);
@@ -61,74 +61,45 @@ struct ArticPont{
         if(!p && children>1) artic[x] = 1;
     }
 
-    void find_brig_and_artc(){
-        for(ll i=1; i<=n; i++){
-            if(!marc[i]) dfs(i,0);
-        }   
-    }
 
-    ll Nvert = 0;
-
-    void BTdfs(ll v, ll comp, ll proib){
-        Nvert++;
-        BTcomponent[v] = comp;
+    void DPdfs(int v){
+        marc[v] = 1;
         for(auto viz : grafo[v]){
-            if(BTcomponent[viz] || viz == proib) continue; 
-            BTdfs(viz, comp, proib);
-        }
-    }
-
-    void DPdfs(ll v, ll pai){
-        for(auto viz : BT[v]){
-            if(viz == pai) continue;
-            DPdfs(viz, v);
+            if(marc[viz] ) continue;
+            DPdfs(viz);
             dp[v] += dp[viz];
         }
         dp[v]++;
     }
 
-    void BrigeTree(){
-        ll comp = 0;
-        vector<ll> BTcomponentSize = {0};
+    void solve(){
 
-        for(auto &b : bridges){
-            if(!BTcomponent[b.first]){
-                Nvert = 0;
-                BTdfs(b.first, ++comp, b.second);
-                BTcomponentSize.push_back(Nvert);
-            }
-            if(!BTcomponent[b.second]) {
-                Nvert = 0;
-                BTdfs(b.second, ++comp, b.first);
-                BTcomponentSize.push_back(Nvert);
-            }
+        pr(bridges);
+
+        if(bridges.size() == 0){
+            cout << (n*(n-1))/2 << "\n";
+            return;
         }
 
+        fill(all(marc), 0);
+        DPdfs(bridges[0].first);
 
-        BT.resize(comp+1);
-        dp.resize(comp+1);
+        pr(dp);
 
-        for(auto &b : bridges){
-            BT[BTcomponent[b.first]].push_back(BTcomponent[b.second]);
-            BT[BTcomponent[b.second]].push_back(BTcomponent[b.first]);
-        }
-
-        DPdfs(bridges[0].first, bridges[0].second);
         ll ans = 1e18;
-        for(auto &b : bridges){
-            int ca = BTcomponent[b.first];
-            int cb = BTcomponent[b.second];
-            ans = min(ans, dp[ca] * dp[cb]);
+        for(int i = 0; i < bridges.size(); i++){
+            int k1 = bridges[i].first;
+            int k2 = bridges[i].second;
+            ll v1 = n - min(dp[k1], dp[k2]);
+            ll v2 = min(dp[k1], dp[k2]);
+            ans = min(ans, (v1*(v1-1))/2 + (v2*(v2-1))/2);
         }
+
 
         cout << ans << "\n";
-
     }
 
-
 };
-
-
 
 void solve(){
     int n, m; cin >> n >> m;
@@ -139,9 +110,9 @@ void solve(){
         art.add_edge(a,b);
     }
 
-    art.find_brig_and_artc();
+    art.dfs(1,0);
 
-    art.BrigeTree();
+    art.solve();
 }
 
 signed main(){

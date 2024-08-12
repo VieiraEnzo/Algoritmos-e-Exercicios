@@ -18,7 +18,7 @@ template<typename T> struct Dykstra
         g[u].push_back({v,p});
     }
 
-    void dykstra(ll v){
+    void run(ll v){
 
         //preparing structures
         priority_queue<pair<ll,ll>, vector<pair<ll,ll>>, 
