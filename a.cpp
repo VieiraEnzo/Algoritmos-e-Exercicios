@@ -26,54 +26,57 @@ int mul(int a, int b) { return 1ll * a * b % mod; }
 int Pow(int a, int b) { int ans = 1; for (; b; b >>= 1, a = mul(a, a)) if (b & 1) ans = mul(ans, a); return ans; }
 
 void solve(){
-    int n, k; cin >> n >> k;
-    multiset<int> s;
+    
+    int n; cin >> n;
+
+    vector<array<int,2>> pts(n+2);
     for(int i = 0; i < n; i++){
-        int tmp; cin >> tmp;
-        s.insert(tmp);
+        int x, y; cin >> x >> y;
+        pts[x][y]++;
     }
 
-    while(*s.begin() != *prev(s.end())){
-        int x = *s.begin();
-        int y = *prev(s.end());
-        s.erase(prev(s.end()));
+    vector<ll> pref0(n+1), pref1(n+1);
+    vector<ll> suf0(n+2), suf1(n+2);
 
-        y %= x;
-        if(y == 0){
-            s.insert(x);
-        }else{
-            s.insert(y);
+    pref0[0] = pts[0][0];
+    pref1[0] = pts[0][1];
+    for(int i = 1; i <= n; i++){
+        pref0[i] = pref0[i-1] + pts[i][0];
+        pref1[i] = pref1[i-1] + pts[i][1];
+    }
+
+    for(int i = n; i >= 0; i--){
+        suf0[i] = suf0[i+1] + pts[i][0];
+        suf1[i] = suf1[i+1] + pts[i][1];
+    }
+
+    ll ans = 0;
+    for(int i = 0; i <= n; i++){
+        if(pts[i][0] && pts[i][1]){
+            if(i-1 >= 0){  
+                ans += pref0[i-1];
+                ans += pref1[i-1];
+            }
+            if(i+1 <= n){
+                ans += suf0[i+1];
+                ans += suf1[i+1];
+            }
         }
     }
 
-    int minE = *s.begin();
-    if(n == 1){
-        if(k-1 < minE){
-            cout << k-1 << "\n";
-        }else{
-            cout << k << "\n";
+    for(int i = 1; i < n; i++){
+        if(pts[i][0] && pts[i-1][1] && pts[i+1][1]){
+            ans++;
         }
-        return;
-    }
-    n--;
+        if(pts[i][1] && pts[i-1][0] && pts[i+1][0]){
+            ans++;
+        }
 
-    if(minE == 1){
-        cout << k + n << "\n";
-        return;
     }
 
+    cout << ans << "\n";
+}   
 
-    int q = (k-1) /(minE-1);
-
-    cout << k + min(n,q) << "\n";
-
-//mex0
-
-}
-
-//mex 4
-//0 2 4 6 8 10
-//
 signed main(){
     fastio;
     int t; cin >> t;
