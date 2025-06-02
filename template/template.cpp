@@ -11,26 +11,20 @@ using namespace std;
     #define prs(...) 69
 #endif
 
-
 #define endl "\n"
 #define fastio cin.tie(nullptr), ios_base::sync_with_stdio(false)
 #define all(x) (x).begin(), (x).end()
 
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+
 typedef long long ll;
+typedef unsigned long long ull;
 typedef pair<int,int> pii;
-const int mod = 1e9 + 7;
-
-int add(int a, int b) { a += b; if (a >= mod) a -= mod; return a; }
-int sub(int a, int b) { a -= b; if (a < 0) a += mod; return a; }
-int mul(int a, int b) { return 1ll * a * b % mod; }
-int Pow(int a, int b) { int ans = 1; for (; b; b >>= 1, a = mul(a, a)) if (b & 1) ans = mul(ans, a); return ans; }
-
-void solve(){
-
-}
+typedef pair<ll,ll> pll;
 
 signed main(){
     fastio;
-    int t; cin >> t;
-    while (t--) solve();
+
+    
+
 }

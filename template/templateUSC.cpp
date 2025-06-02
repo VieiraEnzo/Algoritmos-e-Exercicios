@@ -10,15 +10,7 @@ int main()
 {
     fastio;
     ifstream fin("gymnastics.in");
-
-    //fin >> k >> n;
-    
-
-
-
-
     ofstream fout("gymnastics.out");
-    //fout << ans << endl;
     fin.close();
     fout.close();
 

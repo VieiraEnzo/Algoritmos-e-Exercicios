@@ -13,7 +13,6 @@ using namespace std;
     #define prs(...) 69
 #endif
 
-
 using namespace __gnu_pbds;
 
 #define endl "\n"
@@ -21,15 +20,29 @@ using namespace __gnu_pbds;
 #define all(x) (x).begin(), (x).end()
 
 typedef long long ll;
-typedef unsigned long long ull;
 typedef pair<int,int> pii;
-typedef pair<ll,ll> pll;
+const int mod = 1e9 + 7;
+
+int add(int a, int b) { a += b; if (a >= mod) a -= mod; return a; }
+int sub(int a, int b) { a -= b; if (a < 0) a += mod; return a; }
+int mul(int a, int b) { return 1ll * a * b % mod; }
+int Pow(int a, int b) { int ans = 1; for (; b; b >>= 1, a = mul(a, a)) if (b & 1) ans = mul(ans, a); return ans; }
+
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+
 using ordered_set = tree<ll, null_type, less<ll>, rb_tree_tag, tree_order_statistics_node_update>;
 using ordered_multiset = tree<ll, null_type, less_equal<ll>, rb_tree_tag, tree_order_statistics_node_update>;
+
+
+void solve(){
+
+    
+
+}
 
 signed main(){
     fastio;
 
-    
-
+    int t; cin >> t;
+    while (t--) solve();
 }

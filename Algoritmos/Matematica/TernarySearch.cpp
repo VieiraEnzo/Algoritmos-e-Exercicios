@@ -26,7 +26,7 @@ template<typename T> double ternary(double l, double r){
         double m2 = r - (r-l)/3;
         double f1 = f(m1);
         double f2 = f(m2);
-        if(f1>f2){
+        if(f1<f2){
             l = m1;
         }else{
             r = m2;

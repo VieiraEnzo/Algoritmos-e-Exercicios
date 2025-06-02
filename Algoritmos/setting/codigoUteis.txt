@@ -1,0 +1,1 @@
+ulimit -s 262144  //Aumenta o tamanho da stack pra 256MB

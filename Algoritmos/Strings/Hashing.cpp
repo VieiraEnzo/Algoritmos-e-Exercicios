@@ -26,10 +26,9 @@ template<int MOD> struct Hashing{
 
         pow[0] = 1;
         for(int i = 0; i < n; i++){
-            ha[i + 1] = (ha[i] * base + s[i])%MOD;
+            ha[i+1] = (ha[i] * base + s[i])%MOD;
             pow[i+1] = (pow[i] * base)%MOD;
         }
-
     }
     
     //Retorna o Hashing da substring [a, b), indexado em 0

@@ -22,6 +22,9 @@
         "valarray": "cpp",
         "iosfwd": "cpp",
         "complex": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "format": "cpp",
+        "generator": "cpp",
+        "text_encoding": "cpp"
     }
 }

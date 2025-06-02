@@ -27,3 +27,39 @@ template<typename T> struct SparseTable{
         return min(st[i][l], st[i][r-(1<<i)+1]);
     }
 };
+
+struct SparseTable{
+
+    int n;
+    vector<vector<int>> st;
+
+    SparseTable(int n, vector<int> &a) : n(n), st(32, vector<int> (n)){
+
+        st[0] = a;
+
+        for(int i = 1; i < 32; i++){
+            for(int j = 0; j < n; j++){
+                st[i][j] = st[i-1][j] & st[i-1][min(j + (1<<(i-1)), n-1)];
+            }
+        }
+
+    }
+
+    int query(int l , int r){
+
+        int ans = st[0][l];
+        int dif = r-l+1;
+
+        for(int i = 0; i < 32; i++){
+            if((1<<i) & dif){
+                ans &= st[i][l];
+                l = l + (1<<i);
+            }
+        }
+
+        return ans;
+
+    }
+
+
+};
