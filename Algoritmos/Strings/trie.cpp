@@ -23,7 +23,7 @@ struct Trie{
                 t.push_back(Vertex());
             }
             p = t[p].next[s[i] - 'a'];
-            if(i == s.size()-1) t[p].output++;
         }
+        t[p].output++;
     }
 };
