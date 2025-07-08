@@ -1,4 +1,4 @@
 [project]
 name = "algoritmos-e-exercicios"
 version = "0.1.0"
-packages = ["Algoritmos"] # <-- Change this to only include "Algoritmos"
+packages = ["Algoritmos"]
