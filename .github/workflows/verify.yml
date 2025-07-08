@@ -18,8 +18,12 @@ jobs:
       with:
         python-version: '3.x'
 
+
     - name: Install dependencies
       run: pip3 install -U git+https://github.com/${{ github.repository }}.git@master
+
+    - name: Install verification tool
+      run: pip3 install online-judge-verify-helper
 
     - name: Run tests
       env:
