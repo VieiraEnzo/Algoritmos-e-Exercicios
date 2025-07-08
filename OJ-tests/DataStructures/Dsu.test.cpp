@@ -6,6 +6,11 @@ using namespace std;
 #include "../../Algoritmos/DataStructures/DSU.h"
 
 int main(){
+
+    cin.tie(0);
+    ios_base::sync_with_stdio(false);
+
+
     int n; cin >> n;
     int q; cin >> q;
 

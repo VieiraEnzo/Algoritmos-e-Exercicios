@@ -32,9 +32,9 @@ struct SparseTable{
         int ans = st[0][l];
         int dif = r-l+1;
 
-        for(int i = 0; i < 32; i++){
+        for(int i = 0; i < K; i++){
             if((1<<i) & dif){
-                ans &= st[i][l];
+                ans = min(ans,st[i][l]);
                 l = l + (1<<i);
             }
         }
