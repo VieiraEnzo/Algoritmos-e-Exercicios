@@ -1,4 +1,8 @@
 {
-"OJ-tests/DataStructures/Dsu.test.cpp": "2025-07-08 14:22:49 -0300",
-"OJ-tests/basic.test.cpp": "2025-07-08 14:22:49 -0300"
+"OJ-tests/DataStructures/BIT.test.cpp": "2025-07-08 15:53:12 -0300",
+"OJ-tests/DataStructures/Dsu.test.cpp": "2025-07-08 15:53:12 -0300",
+"OJ-tests/DataStructures/SegTree.test.cpp": "2025-07-08 15:53:12 -0300",
+"OJ-tests/DataStructures/SparceTable.test.cpp": "2025-07-08 15:53:12 -0300",
+"OJ-tests/Grafos/Kosaraju.test.cpp": "2025-07-08 15:53:12 -0300",
+"OJ-tests/basic.test.cpp": "2025-07-08 15:53:12 -0300"
 }
