@@ -1,4 +1,4 @@
-template<typename T> struct BinLift
+struct BinLift
 {
 
     int n;
@@ -13,7 +13,6 @@ template<typename T> struct BinLift
     void build(){
         for(int i = 1; i < 32; i++){
             for(int j = 1; j <= n; j++){
-                // cout << i << " " << j << endl;
                 jmp[i][j] = jmp[i-1][jmp[i-1][j]];
             }
         }
@@ -27,7 +26,7 @@ template<typename T> struct BinLift
             }
         }
         
-        cout << node << endl;      
+        return node;
         
     }
     

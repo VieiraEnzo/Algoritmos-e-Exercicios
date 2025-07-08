@@ -1,11 +1,7 @@
-//String Hashing
-// 
-//Complexidade:
-//constructor - O(|s|)
-//getRange - O(1)
+// Algoritmo de Hashing de Strings
+//Complexidade: O(n), onde n é o tamanho da string
 
 //Cria o hashing de uma string
-//
 //ha[0] = 0
 //ha[1] = s[0]
 //ha[2] = p*s[0] + s[1]

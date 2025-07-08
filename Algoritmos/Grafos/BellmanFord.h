@@ -1,19 +1,18 @@
-//Caminho minimo de um para todos 
-//Rodamos n-1 vezes para encontrar as distancias
-// e mais uma para verificar a existencia de ciclos 
-// negativos
+//Algoritmo de Bellman-Ford para encontrar o caminho mínimo de um vértice
+//para todos os outros vértices em um grafo direcionado com pesos nas arestas
+//e detectar ciclos negativos.
+//Complexidade: O(n * m), onde n é o número de vértices e m é o número de arestas.
 
 //Podemos encontrar ciclos negativos guardando 
 //os pais de cada vértice.
 
-//O(n*m)
 
 struct Edge{
     int v, u, cost;
     Edge(int v, int u, int cost): v(v), u(u), cost(cost) {}
 };
 
-template<typename T> struct Ford
+struct Ford
 {   
     const ll INFL = 1e18;
     int n, m;

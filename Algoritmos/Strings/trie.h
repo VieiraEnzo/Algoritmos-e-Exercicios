@@ -1,3 +1,5 @@
+//Estrutura de dados Trie para armazenar strings
+
 struct Vertex {
     int next[K];
     ll output = 0;

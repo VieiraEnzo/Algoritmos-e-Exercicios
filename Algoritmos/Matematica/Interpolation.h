@@ -12,7 +12,7 @@
 // M(x) - L(X) = 0 -> M(x) = L(x)
 
 
-template<typename T> struct Interpolation
+struct Interpolation
 {
     
     //naive implementation O(n^2)

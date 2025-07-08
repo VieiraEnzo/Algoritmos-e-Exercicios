@@ -1,10 +1,10 @@
 //Algoritmo para resolver equações do tipo
 //(a ou b) e (c ou d) e (~a ou c) ...
+//Complexidade: O(n + m), onde n é o número de variáveis e m é o número de implicações
 //
 // (+a  ou -b) -> add_edge(1, a, 0, b)
-// 
 
-template<typename T> struct SAT2{
+struct SAT2{
 
     int n, cont;
     vector<char> resp;

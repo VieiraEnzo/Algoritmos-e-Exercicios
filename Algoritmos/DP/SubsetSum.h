@@ -1,29 +1,16 @@
+
 /*
-    # Numbers - n 
     Desired Sum - S
-    Subset sum - Implementation O(n*sqrtN) memory and runtime
+    Numbers - n
+    Subset sum - Implementation O(n) memory and O(S * sqrt(N)) runtime
+    Uses sliding window technique to optimize the subset sum problem.
+    This implementation assumes that the input is a set of integers where each integer can be used multiple
+    times, and the goal is to determine if a subset of these integers can sum up to a given target sum S.
 */
 
-vector<vector<int>> dp(sack.size()+1, vector<int> (n+1, 0));
-dp[0][0] = 1;
+vector<pair<int,int>> sack; // {item, frequency}
+vector<int> dp(S+1, 0);
 
-for(int i = 1; i <= sack.size(); i++){
-    auto [item, freq] = sack[i-1];
-    for(int j = 0; j < item; j++){
-        int numTrues = 0;
-        for(int k = j; k <= n; k += item){
-            dp[i][k] = dp[i-1][k];
-            if(numTrues > 0) dp[i][k] = true;
-
-            if(k - freq*item >= 0) numTrues -= dp[i-1][k - freq*item];
-            numTrues += dp[i-1][k];
-        }   
-    }
-}
-
-/*
-    Subset sum - Implementation O(n) memory and O(nsqrt) runtime
-*/
 
 for(int i = 0; i < sack.size(); i++){
     vector<int> ndp(n+1);

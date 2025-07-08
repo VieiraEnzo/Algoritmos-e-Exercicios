@@ -1,9 +1,8 @@
 //Algoritmo de para encontrar componentes fortemente conexas
 //Retorna também em scc as componentes em ordem topologica 
-//
-//O(n+m)
+//Complexidade: O(n+m)
 
-template<typename T> struct Kosa{
+struct Kosa{
 
     int n, cont;
     vector<int> marc, ord, comp;

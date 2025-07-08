@@ -1,4 +1,4 @@
-template<typename T>struct SegTree{ //segtree 0 indexada sem lazy
+struct SegTree{ //segtree 0 indexada sem lazy
   int n;
   struct Node{
     int val;

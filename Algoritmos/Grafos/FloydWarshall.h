@@ -1,8 +1,7 @@
 
 //Algoritmo todos para todos de distancia mínima
-//Se houver ciclos negativos, para 
-//algum a dist[a][a] < 0
-//O(n^3)
+//Se houver ciclos negativos, para algum vertice a  -> dist[a][a] < 0
+//Complexidade: O(n^3)
 
 template<typename T> struct FloydWarshall
 {   

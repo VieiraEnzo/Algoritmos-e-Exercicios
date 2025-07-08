@@ -5,13 +5,13 @@ ing. To obtain each partition A and B of the cut look at lvl, for v ⊂ A,
 lvl[v] > 0, for u ⊂ B, lvl[u] = 0.
 */
 
-template<typename T> struct Edge{
+struct Edge{
     int v, u;
     ll cap, flow = 0;
     Edge(int v, int u, ll cap) : v(v), u(u), cap(cap) {}
 };
 
-template<typename T> struct Dinic{
+struct Dinic{
     ll INFL = 1e18;
     int n, m = 0, s, t;
     vector<Edge> edges;

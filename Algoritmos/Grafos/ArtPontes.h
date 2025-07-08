@@ -1,15 +1,14 @@
-template<typename T> struct ArticPont{
+//Algoritmo para encontrar pontos de articulação e pontes em um grafo não direcionado.
+//Complexidade: O(V + E), onde V é o número de vértices e E é o número de arestas.
+struct ArticPont{
 
     int n;
     int count = 0;
     vector<int> marc, tin, low, artic;
-    vector<vector<int>> grafo, BT;
+    vector<vector<int>> grafo;
     vector<pair<int,int>> bridges;
 
-    vector<int> BTcomponent;
-
-    ArticPont(int n) : n(n), grafo(n+1), marc(n+1), tin(n+1), low(n+1), artic(n+1), 
-                        BTcomponent(n+1){}
+    ArticPont(int n) : n(n), grafo(n+1), marc(n+1), tin(n+1), low(n+1), artic(n+1) {}
 
     void add_edge(int a, int b){
         grafo[a].push_back(b);
@@ -42,24 +41,5 @@ template<typename T> struct ArticPont{
             if(!marc[i]) dfs(i,0);
         }   
     }
-
-    void BTdfs(int v, int comp, int proib){
-        BTcomponent[v] = comp;
-        for(auto viz : grafo[v]){
-            if(BTcomponent[viz] || viz == proib) continue; 
-            BTdfs(viz, comp, proib);
-        }
-    }
-
-    void BrigeTree(){
-        int comp = 0;
-        for(auto &b : bridges){
-            if(!BTcomponent[b.first])  BTdfs(b.first, ++comp, b.second);
-            if(!BTcomponent[b.second]) BTdfs(b.second, ++comp, b.first);
-            BT[BTcomponent[b.first]].push_back(BTcomponent[b.second]);
-            BT[BTcomponent[b.second]].push_back(BTcomponent[b.first]);
-        }
-    }
-
 
 };

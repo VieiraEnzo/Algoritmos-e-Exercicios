@@ -1,6 +1,6 @@
-#include<bits/stdc++.h>
-using namespace std;
-
+//Algorithm to find the topological sort of a directed acyclic graph (DAG).
+// It returns a vector with the vertices in topological order.
+//Complexity: O(n + m), where n is the number of vertices and m is the number of edges.
 struct TopoSort
 {
     int n;

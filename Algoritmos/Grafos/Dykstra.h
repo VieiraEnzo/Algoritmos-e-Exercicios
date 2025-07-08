@@ -1,7 +1,6 @@
 
-//Algoritmo de Caminho mínimo para grafos com
-//pesos não negativos. Um para todos
-// O(nlog)
+//Algoritmo de Caminho mínimo para grafos compesos não negativos. Um para todos
+//Complexidade: O(n log n) onde n é o número de vértices do grafo.
 
 template<typename T> struct Dykstra
 {

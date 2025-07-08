@@ -1,4 +1,4 @@
-template<typename T> struct SparseTable{
+struct SparseTable{
     int K = 25, n;
     vector <vector<int>> st; //st[i][j] = min on range [j, j + 2^i-1]
     vector <int> lg2; //lg2[i] = floor(log2(i))
@@ -26,26 +26,8 @@ template<typename T> struct SparseTable{
         int i = lg2[r-l+1];
         return min(st[i][l], st[i][r-(1<<i)+1]);
     }
-};
 
-struct SparseTable{
-
-    int n;
-    vector<vector<int>> st;
-
-    SparseTable(int n, vector<int> &a) : n(n), st(32, vector<int> (n)){
-
-        st[0] = a;
-
-        for(int i = 1; i < 32; i++){
-            for(int j = 0; j < n; j++){
-                st[i][j] = st[i-1][j] & st[i-1][min(j + (1<<(i-1)), n-1)];
-            }
-        }
-
-    }
-
-    int query(int l , int r){
+    int querylog(int l , int r){
 
         int ans = st[0][l];
         int dif = r-l+1;
@@ -58,8 +40,5 @@ struct SparseTable{
         }
 
         return ans;
-
     }
-
-
 };

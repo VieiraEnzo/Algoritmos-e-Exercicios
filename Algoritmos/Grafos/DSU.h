@@ -1,4 +1,7 @@
-template<typename T> struct DSU
+//Algoritmo para encontrar a estrutura de união (DSU) ou Union-Find
+//Complexidade: O(α(n)), onde α é a função de Ackermann inversa
+
+struct DSU
 {
     int n;
     vector<int> pai, rank;

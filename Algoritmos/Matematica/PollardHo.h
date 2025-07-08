@@ -1,3 +1,6 @@
+//Algoritmo de Pollard's Rho para fatoração de números inteiros
+//Complexidade: O(n^(1/4)) em média, O(n^(1/2)) no pior caso
+
 ll mul(ll a, ll b, ll m) {
 	ll ret = a*b - ll((long double)1/m*a*b+0.5)*m;
 	return ret < 0 ? ret+m : ret;
