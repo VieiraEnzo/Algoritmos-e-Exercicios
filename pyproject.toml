@@ -1,4 +1,6 @@
 [project]
 name = "algoritmos-e-exercicios"
 version = "0.1.0"
+
+[tool.setuptools]
 packages = ["Algoritmos"]
