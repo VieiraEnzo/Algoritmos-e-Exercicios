@@ -4,5 +4,11 @@
         "unordered_map": "cpp",
         "unordered_set": "cpp",
         "string_view": "cpp"
+    },
+    "files.exclude": {
+        "**/*.rpyc": true,
+        "**/*.rpa": true,
+        "**/*.rpymc": true,
+        "**/cache/": true
     }
 }

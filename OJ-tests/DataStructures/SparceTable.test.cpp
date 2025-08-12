@@ -16,8 +16,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        if(0) cout << st.query(l, r-1) << '\n';
-        if(1) cout << st.querylog(l,r-1) << "\n";
+        if(q%2) cout << st.query(l, r-1) << '\n';
+        else cout << st.querylog(l,r-1) << "\n";
     }
     return 0;
 }
