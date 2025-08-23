@@ -3,7 +3,13 @@
         "string": "cpp",
         "unordered_map": "cpp",
         "unordered_set": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "span": "cpp",
+        "iostream": "cpp"
     },
     "files.exclude": {
         "**/*.rpyc": true,

@@ -27,7 +27,6 @@ struct BinLift
         }
         
         return node;
-        
     }
     
 };
