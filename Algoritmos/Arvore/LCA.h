@@ -44,14 +44,15 @@ struct LCA{
             a = bl[i][a];
             b = bl[i][b];
         }
-
+        
+        assert(a != b);
         assert(bl[0][a] == bl[0][b]);
         return bl[0][a];
     }
 
     int dist(int a, int b){
         int l = find_lca(a,b);  
-        return height[a] + height[b] - height[l];
+        return height[a] + height[b] - 2*height[l];
     }
 
 };
