@@ -10,7 +10,6 @@
 //grupo com o conjunto de numeros inteiros, uma vez
 //quen não possui elemento inverso
 
-//está quebrada
 struct FenwickTree {
     vector<int> bit;  // binary indexed tree
     int n;

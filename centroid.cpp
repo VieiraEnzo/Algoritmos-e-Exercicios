@@ -64,8 +64,9 @@ struct Centroid{
     int n;
     vector<int> used, pai, sub;
     vector<vector<int >> vec;
+    vector<int> vermelho; //Guarda quantos vértices vermelhos tem a baixo de x
 
-    Centroid(int n) : n(n), used(n+1), pai(n+1), sub(n+1), vec(n+1) {}
+    Centroid(int n) : n(n), used(n+1), pai(n+1), sub(n+1), vec(n+1), vermelho(n+1) {}
 
     void add_edge(int v, int u){
         vec[v].push_back(u);
@@ -100,6 +101,29 @@ struct Centroid{
             if(!used[i]) build(i, c);
         }
     }
+
+
+    //Pintar o vértice v
+    void paint(int v, LCA &lca){
+        int nxt = v;
+        while(nxt != pai[nxt]){
+            vermelho[nxt] = min(vermelho[nxt], lca.dist(v, nxt));
+            nxt = pai[nxt];
+        }
+        vermelho[nxt] = min(vermelho[nxt], lca.dist(v, nxt));
+    }
+
+    //Encontra a respoda do vertice v
+    int findAns(int v, LCA &lca){
+        int ans = vermelho[v];
+        int nxt = v;
+        while (nxt != pai[nxt])
+        {
+            ans = min(ans, vermelho[nxt] + lca.dist(nxt, v));
+        }
+        return ans;
+    }
+
 };
 
 
@@ -119,5 +143,12 @@ int main(){
 
     centroid.build();
     
+    
+    for(int i = 0; i < n-1; i++){
+        int t, x; cin >> t >> x;
+        if(t == 1) centroid.paint(x, lca);
+        else cout << centroid.findAns(x, lca) << "\n";
+    }
+
     
 }
