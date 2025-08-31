@@ -9,7 +9,14 @@
         "list": "cpp",
         "vector": "cpp",
         "span": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "barrier": "cpp",
+        "chrono": "cpp",
+        "random": "cpp",
+        "latch": "cpp",
+        "limits": "cpp",
+        "semaphore": "cpp",
+        "valarray": "cpp"
     },
     "files.exclude": {
         "**/*.rpyc": true,
