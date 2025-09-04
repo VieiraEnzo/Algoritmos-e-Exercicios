@@ -2,3 +2,10 @@
 - Formulas de Areas e Volumos de formas geometricas
 - Blog de Matematica lá do caio (MORGAN (FREEMAN?))
 - Hockey-stick identity
+
+
+-> Fazer a Seg com lazy
+-> Heavy Light Decomposition?
+-> Codigo de 2 ponteiros do caio
+-> Casos de Suffix Array
+-> Problemas classicos em strings

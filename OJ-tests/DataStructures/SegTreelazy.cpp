@@ -5,7 +5,7 @@ using namespace std;
 
 #define int long long
 
-#include "./Algoritmos/DataStructures/LazySegTree.h"
+#include "../../Algoritmos/DataStructures/LazySegTree.h"
 
 
 signed main() {
