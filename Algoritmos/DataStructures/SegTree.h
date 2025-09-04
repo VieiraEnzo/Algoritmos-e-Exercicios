@@ -1,4 +1,6 @@
-struct SegTree{ //segtree 0 indexada sem lazy
+//SegTree
+
+struct SegTree{
   int n;
   struct Node{
     int val;

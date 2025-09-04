@@ -1,5 +1,6 @@
-//Segtree node for Merge-Sort
+//Merge Sort Tree
 
+//Segtree node for Merge-Sort
 struct Node{
     vector<int> vec;
     Node operator+(Node other) const{

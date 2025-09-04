@@ -1,4 +1,4 @@
-//Sparse Seg Tree de beta mas é o que tem
+//SegTree Sparse
 
 struct Node {
     int left, right;

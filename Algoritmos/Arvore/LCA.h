@@ -1,3 +1,5 @@
+//Lowest Common Ancestor
+
 struct LCA{
     
     int n;
@@ -5,14 +7,16 @@ struct LCA{
     vector<int> marc, height;
     vector<vector<int>> g, bl;
 
-    LCA(int n) : n(n), g(n+1), bl(sz, vector<int> (n+1, 1)), marc(n+1), height(n+1){} //Rooted em 1
+    //Trocar se a raiz nao for 1
+    LCA(int n) : n(n), g(n+1), bl(sz, vector<int> (n+1, 1)), marc(n+1), height(n+1){}
 
     void add_edge(int a, int b){
         g[a].push_back(b);
         g[b].push_back(a);
     }
 
-    void build(int x = 1){ //Rooted em 1
+    //Trocar se a raiz nao for 1
+    void build(int x = 1){ 
         marc[x] = 1;
         for(int i = 1; i < sz; i++){
             bl[i][x] = bl[i-1][bl[i-1][x]];

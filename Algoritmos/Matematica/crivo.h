@@ -1,3 +1,5 @@
+//Crivo + Fatoração
+
 struct Sieve{
     int maxn;
     vector <int> is_prime, min_div;

@@ -1,11 +1,6 @@
-//Algoritmo de Bellman-Ford para encontrar o caminho mínimo de um vértice
-//para todos os outros vértices em um grafo direcionado com pesos nas arestas
-//e detectar ciclos negativos.
+//Bellman-Ford
 //Complexidade: O(n * m), onde n é o número de vértices e m é o número de arestas.
-
-//Podemos encontrar ciclos negativos guardando 
-//os pais de cada vértice.
-
+//Podemos encontrar ciclos negativos guardando os pais de cada vértice.
 
 struct Edge{
     int v, u, cost;

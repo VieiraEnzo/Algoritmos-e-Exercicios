@@ -1,3 +1,5 @@
+//BIT - Range Update
+
 vector<int> bit1, bit2;
 void init(int n){
 	bit1.assign(n+1, 0);

@@ -1,6 +1,6 @@
-//Algoritmo para calcular o vetor Z de uma string
-// O vetor Z[i] é o tamanho do maior prefixo da string que começa na posição i
-// e é igual ao prefixo da string original.
+//Z
+//O vetor Z[i] é o tamanho do maior prefixo da string que começa na posição i
+//e é igual ao prefixo da string original.
 //Complexidade: O(n), onde n é o tamanho da string
 
 vector<int> zfunc(string s){

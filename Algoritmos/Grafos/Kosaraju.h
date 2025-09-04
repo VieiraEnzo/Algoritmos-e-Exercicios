@@ -1,3 +1,4 @@
+//Kosaraju
 //Algoritmo de para encontrar componentes fortemente conexas
 //Retorna também em scc as componentes em ordem topologica 
 //Complexidade: O(n+m)

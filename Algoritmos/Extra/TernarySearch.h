@@ -1,3 +1,5 @@
+//Ternary Search
+
 double ternary(double l, double r){
     // < for maximum and > for minimum value
     int cont = 300;
@@ -16,7 +18,6 @@ double ternary(double l, double r){
     return l;
 }
 
-//Para buscas em inteiros
 /**
  * Author: Simon Lindholm
  * Date: 2015-05-12
@@ -34,7 +35,6 @@ double ternary(double l, double r){
  * Usage: int ind = ternSearch(0,n-1,[\&](int i){return a[i];});
  * Time: O(\log(b-a))
  */
-
 
 int ternSearch(int a, int b) {
 	assert(a <= b);

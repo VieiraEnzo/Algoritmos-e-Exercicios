@@ -1,3 +1,4 @@
+//Manacher
 //Algoritmo de Manacher para encontrar o tamanho dos palíndromos em uma string
 //Complexidade: O(n), onde n é o tamanho da string
 

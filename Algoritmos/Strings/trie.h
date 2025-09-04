@@ -1,3 +1,4 @@
+//Trie
 //Estrutura de dados Trie para armazenar strings
 
 struct Vertex {

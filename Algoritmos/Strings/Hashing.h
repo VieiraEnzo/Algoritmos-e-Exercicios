@@ -1,4 +1,4 @@
-// Algoritmo de Hashing de Strings
+//Hashing
 //Complexidade: O(n), onde n é o tamanho da string
 
 //Cria o hashing de uma string

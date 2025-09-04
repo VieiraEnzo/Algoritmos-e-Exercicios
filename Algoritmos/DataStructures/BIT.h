@@ -1,17 +1,12 @@
-//Binary Indexed Tree
+//BIT
 //
 //dada uma função f associativa em um sobre um
 //conjunto com elemento neutro e inversos
-//Querry - O(log(n))
-//  ++suporta apenas querry de update singular
+//Querry - O(log(n))++suporta apenas querry de update singular
 //Update - O(log(n))
-//
-//Não suporta mínimo: Já que míninimo não forma um
-//grupo com o conjunto de numeros inteiros, uma vez
-//quen não possui elemento inverso
 
 struct FenwickTree {
-    vector<int> bit;  // binary indexed tree
+    vector<int> bit; 
     int n;
 
     FenwickTree(int n) {

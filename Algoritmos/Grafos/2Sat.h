@@ -1,8 +1,11 @@
+//2 Sat
 //Algoritmo para resolver equações do tipo
 //(a ou b) e (c ou d) e (~a ou c) ...
 //Complexidade: O(n + m), onde n é o número de variáveis e m é o número de implicações
 //
 // (+a  ou -b) -> add_edge(1, a, 0, b)
+//
+//Status: tested - https://cses.fi/problemset/result/8784228/
 
 struct SAT2{
 
@@ -14,7 +17,7 @@ struct SAT2{
     SAT2(int n) :  n(n), marc(2*n+2), grafo(2*n+2), rgrafo(2*n+2), comp(2*n+2), resp(2*n + 2){}
 
     void add_edge(int sx, int x, int sy, int y){ // '+' = 1, '-' = 0
-
+        
         grafo[y+n*(!sy)].push_back(x+n*sx); //~y -> x
         grafo[x+n*(!sx)].push_back(y+n*sy); //~x -> y
 

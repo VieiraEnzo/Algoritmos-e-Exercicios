@@ -1,3 +1,4 @@
+//Interpolação
 // https://en.wikipedia.org/wiki/Lagrange_polynomial
 // 
 // Interpolação is a numerical method to 
@@ -10,7 +11,6 @@
 // points, but the only function that has K+1 roots
 // with degree <=k is f(x) = 0, so
 // M(x) - L(X) = 0 -> M(x) = L(x)
-
 
 struct Interpolation
 {

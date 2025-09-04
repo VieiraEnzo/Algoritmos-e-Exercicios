@@ -1,3 +1,5 @@
+//Mo
+
 const int blockSize = 500;
 
 struct Query

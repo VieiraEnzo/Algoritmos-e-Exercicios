@@ -1,4 +1,5 @@
-//Indexado em 1
+//Centroid Decomposition
+    
 struct Centroid{
     int n;
     vector<int> used, pai, sub;

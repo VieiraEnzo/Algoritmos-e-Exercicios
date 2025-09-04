@@ -1,3 +1,4 @@
+//Pollard Ho
 //Algoritmo de Pollard's Rho para fatoração de números inteiros
 //Complexidade: O(n^(1/4)) em média, O(n^(1/2)) no pior caso
 

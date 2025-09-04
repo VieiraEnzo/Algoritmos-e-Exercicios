@@ -1,13 +1,12 @@
+//Kuhn
 //Finds maximal matching in O(V * E) time 
-//Algoritmo de Kuhn
 
 struct bm_t
 {
     int N, M, T;
     vector<vector<int>> grafo;
     vector<int> match, seen;
-    bm_t(int a, int b) : N(a), M(a+b), T(0), grafo(M),
-                        match(M, -1), seen(M, -1) {}
+    bm_t(int a, int b) : N(a), M(a+b), T(0), grafo(M),match(M, -1), seen(M, -1) {}
     
     void add_edge(int a, int b){
         grafo[a].push_back(b + N);

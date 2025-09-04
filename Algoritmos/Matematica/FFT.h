@@ -1,3 +1,4 @@
+//FFT + NTT
 //Tirar de dentro da struct para mais desempenho!
 struct FFT{
     typedef complex<double> C;

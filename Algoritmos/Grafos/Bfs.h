@@ -1,3 +1,5 @@
+//BFS
+//kkkkkkkkkkkkkkkkkkkkkk
 queue<int> q;
 vector<bool> used(n);
 

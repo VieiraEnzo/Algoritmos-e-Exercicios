@@ -5,7 +5,7 @@
 // A+B eh um poligono convexo com no max |A|+|B| pontos
 //
 // O(|A|+|B|)
-// Do cadeno do Bruno Maletas UFMG
+// Do cadeno do Brunas Maletas UFMG
 
 vector<pt> minkowski(vector<pt> p, vector<pt> q) {
 	auto fix = [](vector<pt>& P) {

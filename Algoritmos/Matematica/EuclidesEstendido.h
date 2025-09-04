@@ -1,6 +1,7 @@
-//Algoritmo de Euclides Estendido
-// Retorna o GCD de a e b, e os coeficientes x e y
-// tais que ax + by = gcd(a, b).
+//Euclides Estendido
+//
+//Retorna o GCD de a e b, e os coeficientes x e y
+//tais que ax + by = gcd(a, b).
 //Complexidade: O(log(min(a, b)))
 
 int egcd(int a, int b, int& x, int& y) {

@@ -4,7 +4,6 @@
 - Hockey-stick identity
 
 
--> Fazer a Seg com lazy
 -> Heavy Light Decomposition?
 -> Codigo de 2 ponteiros do caio
 -> Casos de Suffix Array

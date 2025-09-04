@@ -3,7 +3,7 @@
 // Verifica se um poligono com n pontos eh simples
 //
 // O(n log n)
-// Direto do Caderno do Bruno Mallas
+// Direto do Caderno do Brullas Mano
 
 bool operator < (const line& a, const line& b) { // comparador pro sweepline
 	if (a.p == b.p) return ccw(a.p, a.q, b.q);

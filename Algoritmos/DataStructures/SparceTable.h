@@ -1,3 +1,5 @@
+//Sparse Table
+
 struct SparseTable{
     int K = 25, n;
     vector <vector<int>> st; //st[i][j] = min on range [j, j + 2^i-1]

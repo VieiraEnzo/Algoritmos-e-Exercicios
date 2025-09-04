@@ -1,12 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 using ll = long long;
 using i64 = long long;
 const i64 inf = 1e18;
+
 int rnd(int a, int b){
     return a + rand() % (b-a+1);
 }
+
+//Generate test Cases
 int main(int argc, char* argv[]){
     int seed = atoi(argv[1]);
     srand(seed);

@@ -1,3 +1,4 @@
+//Pontes e Articulação
 //Algoritmo para encontrar pontos de articulação e pontes em um grafo não direcionado.
 //Complexidade: O(V + E), onde V é o número de vértices e E é o número de arestas.
 struct ArticPont{

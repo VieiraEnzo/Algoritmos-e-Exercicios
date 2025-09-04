@@ -1,1 +1,4 @@
 To run localy -> oj-verify run
+
+Judges: https://judge.u-aizu.ac.jp/onlinejudge/index.jsp
+Judges: https://judge.yosupo.jp/

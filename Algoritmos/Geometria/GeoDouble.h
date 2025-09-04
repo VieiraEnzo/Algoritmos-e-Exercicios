@@ -1,3 +1,4 @@
+//Primitiva Double
 //Direto do Caderno do Bruno das Malas UFMG
 
 typedef double ld;

@@ -1,3 +1,4 @@
+//Hungarian Matching
 /*
  * Source: https://github.com/bqi343/USACO/blob/master/Implementations/content/graphs%20(12)/Matching/Hungarian.h
  * Description: Given a weighted bipartite graph, matches every node on
@@ -20,7 +21,7 @@ template<class cost_t> pair<cost_t, vector<int>> hungarian(const vector<vector<c
 		p[0] = i; int j0 = 0;
 		vector<cost_t> dist(m, 1e9);  
         vector<int> pre(m, -1); 
-		vector<bool> done(m + 1);
+		vector<bool> done(m + 1);   
 		do {
 			done[j0] = true;
 			int i0 = p[j0], j1; 
