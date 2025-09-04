@@ -891,7 +891,7 @@ struct FFT{
                 a[i + j] += z;
             }
     }
-        // multiplica dois polinomios
+        
     vd conv(const vd& a, const vd& b) {
         if (a.empty() || b.empty()) return {};
         vd res(a.size() + b.size() - 1);
@@ -960,62 +960,7 @@ struct FFT{
         return res;
     }
      
-        /*
-        * Author: chilli
-        * Date: 2019-04-16
-        * License: CC0
-        * Source: based on KACTL's FFT
-        * Description: ntt(a) computes $\hat f(k) = \sum_x a[x] g^{xk}$ for all $k$, where $g=\text{root}^{(mod-1)/N}$.
-        * N must be a power of 2.
-        * Useful for convolution modulo specific nice primes of the form $2^a b+1$,
-        * where the convolution result has size at most $2^a$. For arbitrary modulo, see FFTMod.
-        \texttt{conv(a, b) = c}, where $c[x] = \sum a[i]b[x-i]$.
-        For manual convolution: NTT the inputs, multiply
-        pointwise, divide by n, reverse(start+1, end), NTT back.
-        * Inputs must be in [0, mod).
-        * Time: O(N \log N)
-        * Status: stress-tested
-    */
-    const ll mod = (119 << 23) + 1, root = 62; // = 998244353
-        // For p < 2^30 there is also e.g. 5 << 25, 7 << 26, 479 << 21
-        // and 483 << 21 (same root). The last two are > 10^9.
-    void ntt(vl &a) {
-        int n = a.size(), L = 31 - __builtin_clz(n);
-        static vl rt(2, 1);
-        for (static int k = 2, s = 2; k < n; k *= 2, s++) {
-            rt.resize(n);
-            ll z[] = {1, modpow(root, mod >> s)};
-            for(int i = k; i < 2*k; i++) rt[i] = rt[i / 2] * z[i & 1] % mod;
-        }
-        vi rev(n);
-        for(int i = 0; i < n; i++) rev[i] = (rev[i / 2] | (i & 1) << L) / 2;
-        for(int i = 0; i < n; i++) if (i < rev[i]) swap(a[i], a[rev[i]]);
-        for (int k = 1; k < n; k *= 2)
-            for (int i = 0; i < n; i += 2 * k) for(int j = 0; j < k; j++) {
-                ll z = rt[j + k] * a[i + j + k] % mod, &ai = a[i + j];
-                a[i + j + k] = ai - z + (z > ai ? mod : 0);
-                ai += (ai + z >= mod ? z - mod : z);
-            }
-    }
-    vl conv_ntt(const vl &a, const vl &b) {
-        if (a.empty() || b.empty()) return {};
-        int s = a.size() + b.size() - 1, B = 32 - __builtin_clz(s),
-            n = 1 << B;
-        int inv = modpow(n, mod - 2);
-        vl L(a), R(b), out(n);
-        L.resize(n), R.resize(n);
-        ntt(L), ntt(R);
-        for(int i = 0; i < n; i++)
-            out[-i & (n - 1)] = (ll)L[i] * R[i] % mod * inv % mod;
-        ntt(out);
-        return {out.begin(), out.begin() + s};
-    }
-    ll modpow(ll b, ll e) {
-        ll ans = 1;
-        for (; e; b = b * b % mod, e /= 2)
-            if (e & 1) ans = ans * b % mod;
-        return ans;
-    }
+    
 };
 \end{minted}
 
@@ -1102,55 +1047,6 @@ struct Interpolation
 };
 \end{minted}
 
-\subsection{Line Container}
-\begin{minted}{cpp}
- * Author: Simon Lindholm
- * Date: 2017-04-20
- * License: CC0
- * Source: own work
- * Description: Container where you can add lines of the form kx+m, and query maximum values at points x.
- *  Useful for dynamic programming (``convex hull trick'').
- * Time: O(\log N)
- * Status: stress-tested
- */
-
-struct Line {
-	mutable ll k, m, p;
-	bool operator<(const Line& o) const { return k < o.k; }
-	bool operator<(ll x) const { return p < x; }
-}; 
-
-struct LineContainer : multiset<Line, less<>> {
-    
-	static const ll inf = LLONG_MAX; //for doubles 1/.0
-    	
-    ll div(ll a, ll b) { //for doubles return a/b
-		return a / b - ((a ^ b) < 0 && a % b); }
-    
-	bool isect(iterator x, iterator y) {
-		if (y == end()) { x->p = inf; return false; }
-		if (x->k == y->k) x->p = x->m > y->m ? inf : -inf;
-		else x->p = div(y->m - x->m, x->k - y->k);
-		return x->p >= y->p;
-	} 
-    	
-        //para achar o mínimo, é preciso fazer insert({-k, -m, 0}), além disso multiplicar por -1 o resultado da query
-    void add(ll k, ll m) {
-		auto z = insert({k, m, 0}), y = z++, x = y;
-		while (isect(y, z)) z = erase(z);
-		if (x != begin() && isect(--x, y)) isect(x, y = erase(y));
-		while ((y = x) != begin() && (--x)->p >= y->p) 
-			isect(x, erase(y));
-	}
-    
-	ll query(ll x) {
-		assert(!empty());
-        auto l = *lower_bound(x);
-		return l.k * x + l.m;
-	}
-};
-\end{minted}
-
 \subsection{Matrix}
 \begin{minted}{cpp}
 //Utilizado principalmente em recorrencias lineares
@@ -1191,6 +1087,71 @@ struct Matriz{
     }
     return res;
   }
+};
+\end{minted}
+
+\subsection{NTT}
+\begin{minted}{cpp}
+{
+    typedef vector<long long int> vl;
+    typedef vector<int> vi;
+    
+        /*
+    * Author: chilli
+    * Date: 2019-04-16
+    * License: CC0
+    * Source: based on KACTL's FFT
+    * Description: ntt(a) computes $\hat f(k) = \sum_x a[x] g^{xk}$ for all $k$, where $g=\text{root}^{(mod-1)/N}$.
+    * N must be a power of 2.
+    * Useful for convolution modulo specific nice primes of the form $2^a b+1$,
+    * where the convolution result has size at most $2^a$. For arbitrary modulo, see FFTMod.
+    \texttt{conv(a, b) = c}, where $c[x] = \sum a[i]b[x-i]$.
+    For manual convolution: NTT the inputs, multiply
+    pointwise, divide by n, reverse(start+1, end), NTT back.
+    * Inputs must be in [0, mod).
+    * Time: O(N \log N)
+    * Status: stress-tested
+    */
+    const ll mod = (119 << 23) + 1, root = 62; // = 998244353
+        // For p < 2^30 there is also e.g. 5 << 25, 7 << 26, 479 << 21
+        // and 483 << 21 (same root). The last two are > 10^9.
+    void ntt(vl &a) {
+        int n = a.size(), L = 31 - __builtin_clz(n);
+        static vl rt(2, 1);
+        for (static int k = 2, s = 2; k < n; k *= 2, s++) {
+            rt.resize(n);
+            ll z[] = {1, modpow(root, mod >> s)};
+            for(int i = k; i < 2*k; i++) rt[i] = rt[i / 2] * z[i & 1] % mod;
+        }
+        vi rev(n);
+        for(int i = 0; i < n; i++) rev[i] = (rev[i / 2] | (i & 1) << L) / 2;
+        for(int i = 0; i < n; i++) if (i < rev[i]) swap(a[i], a[rev[i]]);
+        for (int k = 1; k < n; k *= 2)
+            for (int i = 0; i < n; i += 2 * k) for(int j = 0; j < k; j++) {
+                ll z = rt[j + k] * a[i + j + k] % mod, &ai = a[i + j];
+                a[i + j + k] = ai - z + (z > ai ? mod : 0);
+                ai += (ai + z >= mod ? z - mod : z);
+            }
+    }
+    vl conv_ntt(const vl &a, const vl &b) {
+        if (a.empty() || b.empty()) return {};
+        int s = a.size() + b.size() - 1, B = 32 - __builtin_clz(s),
+            n = 1 << B;
+        int inv = modpow(n, mod - 2);
+        vl L(a), R(b), out(n);
+        L.resize(n), R.resize(n);
+        ntt(L), ntt(R);
+        for(int i = 0; i < n; i++)
+            out[-i & (n - 1)] = (ll)L[i] * R[i] % mod * inv % mod;
+        ntt(out);
+        return {out.begin(), out.begin() + s};
+    }
+    ll modpow(ll b, ll e) {
+        ll ans = 1;
+        for (; e; b = b * b % mod, e /= 2)
+            if (e & 1) ans = ans * b % mod;
+        return ans;
+    }
 };
 \end{minted}
 
@@ -2602,6 +2563,55 @@ struct BIT2D{
     ll queryArea(ll xi , ll yi, ll xf, ll yf){
         return query(xf,yf) - query(xf, yi-1) - query(xi-1, yf) + query(xi-1, yi-1);
     }
+};
+\end{minted}
+
+\subsection{Line Container}
+\begin{minted}{cpp}
+ * Author: Simon Lindholm
+ * Date: 2017-04-20
+ * License: CC0
+ * Source: own work
+ * Description: Container where you can add lines of the form kx+m, and query maximum values at points x.
+ *  Useful for dynamic programming (``convex hull trick'').
+ * Time: O(\log N)
+ * Status: stress-tested
+ */
+
+struct Line {
+	mutable ll k, m, p;
+	bool operator<(const Line& o) const { return k < o.k; }
+	bool operator<(ll x) const { return p < x; }
+}; 
+
+struct LineContainer : multiset<Line, less<>> {
+    
+	static const ll inf = LLONG_MAX; //for doubles 1/.0
+    	
+    ll div(ll a, ll b) { //for doubles return a/b
+		return a / b - ((a ^ b) < 0 && a % b); }
+    
+	bool isect(iterator x, iterator y) {
+		if (y == end()) { x->p = inf; return false; }
+		if (x->k == y->k) x->p = x->m > y->m ? inf : -inf;
+		else x->p = div(y->m - x->m, x->k - y->k);
+		return x->p >= y->p;
+	} 
+    	
+        //para achar o mínimo, é preciso fazer insert({-k, -m, 0}), além disso multiplicar por -1 o resultado da query
+    void add(ll k, ll m) {
+		auto z = insert({k, m, 0}), y = z++, x = y;
+		while (isect(y, z)) z = erase(z);
+		if (x != begin() && isect(--x, y)) isect(x, y = erase(y));
+		while ((y = x) != begin() && (--x)->p >= y->p) 
+			isect(x, erase(y));
+	}
+    
+	ll query(ll x) {
+		assert(!empty());
+        auto l = *lower_bound(x);
+		return l.k * x + l.m;
+	}
 };
 \end{minted}
 
