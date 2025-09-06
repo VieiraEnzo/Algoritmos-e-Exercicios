@@ -5,3 +5,4 @@ mv biblioteca.pdf ../Pdf
 rm tmp.cpp
 rm getlatex biblioteca.aux biblioteca.toc biblioteca.out
 rm -f biblioteca.rubbercache
+rm biblioteca.log

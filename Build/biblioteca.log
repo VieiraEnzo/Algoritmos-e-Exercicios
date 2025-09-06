@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.4)  4 SEP 2025 20:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.4)  6 SEP 2025 01:30
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -749,12 +749,12 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (./titlepage.tex
-<Imagens/projeto.png, id=249, 323.96896pt x 153.26224pt>
+<Imagens/projeto.png, id=253, 323.96896pt x 153.26224pt>
 File: Imagens/projeto.png Graphic file (type png)
 <use Imagens/projeto.png>
 Package pdftex.def Info: Imagens/projeto.png  used on input line 6.
 (pdftex.def)             Requested size: 256.0748pt x 121.15298pt.
-<Imagens/Shadow.png, id=251, 1845.89626pt x 1706.375pt>
+<Imagens/Shadow.png, id=255, 1845.89626pt x 1706.375pt>
 File: Imagens/Shadow.png Graphic file (type png)
 <use Imagens/Shadow.png>
 Package pdftex.def Info: Imagens/Shadow.png  used on input line 7.
@@ -857,8 +857,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 \openout5 = `biblioteca.pyg'.
 
 
+(./_minted-biblioteca/11FEB1CDC1ED2ABCBAB058E4300B9BBE56D282E624233EBAC87C446FF
+8CFE412.pygtex [11])
+\openout5 = `biblioteca.pyg'.
+
+
 (./_minted-biblioteca/40C6A83101567F21AE1D471E42FBB84056D282E624233EBAC87C446FF
-8CFE412.pygtex [11]
+8CFE412.pygtex
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
 12.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
@@ -866,41 +871,35 @@ File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
+ [12]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [12])
+)
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/E7D0736894B68B478833D03553F3F73C56D282E624233EBAC87C446FF
-8CFE412.pygtex)
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/25EBBD57E38C8EBD6E3DB94C077C152356D282E624233EBAC87C446FF
 8CFE412.pygtex [13])
 \openout5 = `biblioteca.pyg'.
 
 
-(./_minted-biblioteca/71ABD5270CBFE5F706108160A2A51EF356D282E624233EBAC87C446FF
+(./_minted-biblioteca/25EBBD57E38C8EBD6E3DB94C077C152356D282E624233EBAC87C446FF
 8CFE412.pygtex)
 \openout5 = `biblioteca.pyg'.
 
 
-(./_minted-biblioteca/747F7071BBCBF7D2832BF5188562660E56D282E624233EBAC87C446FF
+(./_minted-biblioteca/71ABD5270CBFE5F706108160A2A51EF356D282E624233EBAC87C446FF
 8CFE412.pygtex [14])
 \openout5 = `biblioteca.pyg'.
 
 
+(./_minted-biblioteca/747F7071BBCBF7D2832BF5188562660E56D282E624233EBAC87C446FF
+8CFE412.pygtex)
+\openout5 = `biblioteca.pyg'.
+
+
 (./_minted-biblioteca/EBADC6FC9F65CD3DB616F84DD58EF83756D282E624233EBAC87C446FF
-8CFE412.pygtex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 3428) has occurred while \output is active []
-
- [15])
+8CFE412.pygtex [15])
 \openout5 = `biblioteca.pyg'.
 
 
@@ -918,81 +917,96 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 (./_minted-biblioteca/098F1FB7A75E8576EA9DB5CB00BAAB0B56D282E624233EBAC87C446FF
-8CFE412.pygtex)
+8CFE412.pygtex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17])
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/5F7EE313851859C465F072D6CEAA782356D282E624233EBAC87C446FF
-8CFE412.pygtex [17]
+8CFE412.pygtex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-)
+ [18])
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/D00B1402FA8307BD529B9FCCAA07175656D282E624233EBAC87C446FF
-8CFE412.pygtex [18]
+8CFE412.pygtex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19])
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/E590D79CCB68EED9D20121B04CEC71EE56D282E624233EBAC87C446FF
+8CFE412.pygtex)
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/35833324F9A4ABC66D2CDC9601CB60BE56D282E624233EBAC87C446FF
+8CFE412.pygtex [20])
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/C871F4F47CE9CD1B3FECE1E87637EC3356D282E624233EBAC87C446FF
+8CFE412.pygtex)
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/06204DC4B669AB15CBB13ACA6762342056D282E624233EBAC87C446FF
+8CFE412.pygtex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 3428) has occurred while \output is active []
+
+ [21])
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/8E6EDCC33CA433C93678B4D0F870B80656D282E624233EBAC87C446FF
+8CFE412.pygtex)
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/B8508406B6ADA65A8A53B140B3C7C02756D282E624233EBAC87C446FF
+8CFE412.pygtex [22])
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/01F5562269B27D0038E0D2EC7419067056D282E624233EBAC87C446FF
+8CFE412.pygtex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 )
 \openout5 = `biblioteca.pyg'.
 
 
-(./_minted-biblioteca/E590D79CCB68EED9D20121B04CEC71EE56D282E624233EBAC87C446FF
-8CFE412.pygtex [19])
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/35833324F9A4ABC66D2CDC9601CB60BE56D282E624233EBAC87C446FF
-8CFE412.pygtex)
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/C871F4F47CE9CD1B3FECE1E87637EC3356D282E624233EBAC87C446FF
-8CFE412.pygtex [20])
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/06204DC4B669AB15CBB13ACA6762342056D282E624233EBAC87C446FF
-8CFE412.pygtex)
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/8E6EDCC33CA433C93678B4D0F870B80656D282E624233EBAC87C446FF
-8CFE412.pygtex [21])
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/B8508406B6ADA65A8A53B140B3C7C02756D282E624233EBAC87C446FF
+(./_minted-biblioteca/DB930415ADF675E47F9BA57D60C762B656D282E624233EBAC87C446FF
 8CFE412.pygtex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22])
-\openout5 = `biblioteca.pyg'.
+ [23]
+Underfull \vbox (badness 3428) has occurred while \output is active []
 
-
-(./_minted-biblioteca/01F5562269B27D0038E0D2EC7419067056D282E624233EBAC87C446FF
-8CFE412.pygtex)
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/DB930415ADF675E47F9BA57D60C762B656D282E624233EBAC87C446FF
-8CFE412.pygtex [23])
+)
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/0A06E5C0F6472DCA1B47BF3E32F508B856D282E624233EBAC87C446FF
-8CFE412.pygtex)
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/439CE8586A997259D676DEB94902903F56D282E624233EBAC87C446FF
 8CFE412.pygtex [24])
 \openout5 = `biblioteca.pyg'.
 
 
-(./_minted-biblioteca/B1CACCE4FB151505724291AE3B138AC456D282E624233EBAC87C446FF
+(./_minted-biblioteca/439CE8586A997259D676DEB94902903F56D282E624233EBAC87C446FF
 8CFE412.pygtex)
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/B1CACCE4FB151505724291AE3B138AC456D282E624233EBAC87C446FF
+8CFE412.pygtex [25])
 \openout5 = `biblioteca.pyg'.
 
 
@@ -1002,43 +1016,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 (./_minted-biblioteca/250C7274A5E2BD6EC55B3DA34258520C56D282E624233EBAC87C446FF
-8CFE412.pygtex [25])
+8CFE412.pygtex)
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/2D5030386BDD5BE99066F5184F80449956D282E624233EBAC87C446FF
-8CFE412.pygtex)
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/0F7951DF41D800DFC9710CDA7F1F374B56D282E624233EBAC87C446FF
 8CFE412.pygtex [26])
 \openout5 = `biblioteca.pyg'.
 
 
-(./_minted-biblioteca/FC142CCF44DEFB0CDE6ABE2484EDBF2E56D282E624233EBAC87C446FF
-8CFE412.pygtex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-)
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/E5BB659F12FD93D81A47DEB9B8A9E6E656D282E624233EBAC87C446FF
-8CFE412.pygtex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [27])
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/FB19E7EC0EF644325D4370701AEDAEA056D282E624233EBAC87C446FF
+(./_minted-biblioteca/0F7951DF41D800DFC9710CDA7F1F374B56D282E624233EBAC87C446FF
 8CFE412.pygtex)
 \openout5 = `biblioteca.pyg'.
 
 
-(./_minted-biblioteca/7C81B44FFE10D4282738BE968DFC67A556D282E624233EBAC87C446FF
+(./_minted-biblioteca/FC142CCF44DEFB0CDE6ABE2484EDBF2E56D282E624233EBAC87C446FF
+8CFE412.pygtex [27])
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/E5BB659F12FD93D81A47DEB9B8A9E6E656D282E624233EBAC87C446FF
+8CFE412.pygtex)
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/FB19E7EC0EF644325D4370701AEDAEA056D282E624233EBAC87C446FF
 8CFE412.pygtex [28])
+\openout5 = `biblioteca.pyg'.
+
+
+(./_minted-biblioteca/7C81B44FFE10D4282738BE968DFC67A556D282E624233EBAC87C446FF
+8CFE412.pygtex)
 \openout5 = `biblioteca.pyg'.
 
 
@@ -1048,60 +1056,42 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 (./_minted-biblioteca/E3CC9BD5AC8CFD99DA4E33793A4F75F256D282E624233EBAC87C446FF
-8CFE412.pygtex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-)
+8CFE412.pygtex [29])
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/B4110AAF78734C85CEC4C63104DA0A0C56D282E624233EBAC87C446FF
-8CFE412.pygtex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [29])
+8CFE412.pygtex)
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/2EAA15564E765F3C155F4399FC5C9B0956D282E624233EBAC87C446FF
-8CFE412.pygtex)
+8CFE412.pygtex [30])
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/D8ECBBABA8361AD7D6F0FAB7BDC6C1A556D282E624233EBAC87C446FF
-8CFE412.pygtex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [30]
-Underfull \vbox (badness 3428) has occurred while \output is active []
-
-)
-\openout5 = `biblioteca.pyg'.
-
-
-(./_minted-biblioteca/3AB8FB7505701AA0D98EBF3683760E6A56D282E624233EBAC87C446FF
 8CFE412.pygtex)
 \openout5 = `biblioteca.pyg'.
 
 
-(./_minted-biblioteca/AD0B1BF1CC8CA9C5DFEBCD34E853B7A956D282E624233EBAC87C446FF
+(./_minted-biblioteca/3AB8FB7505701AA0D98EBF3683760E6A56D282E624233EBAC87C446FF
 8CFE412.pygtex [31])
 \openout5 = `biblioteca.pyg'.
 
 
-(./_minted-biblioteca/B7428673A75C6A2EB429E2D8B4F4F84B56D282E624233EBAC87C446FF
-8CFE412.pygtex
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(./_minted-biblioteca/AD0B1BF1CC8CA9C5DFEBCD34E853B7A956D282E624233EBAC87C446FF
+8CFE412.pygtex)
+\openout5 = `biblioteca.pyg'.
 
-)
+
+(./_minted-biblioteca/B7428673A75C6A2EB429E2D8B4F4F84B56D282E624233EBAC87C446FF
+8CFE412.pygtex [32])
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/F149E9AF5599BCB5B7C795395CD6257456D282E624233EBAC87C446FF
-8CFE412.pygtex [32]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-)
+8CFE412.pygtex)
 \openout5 = `biblioteca.pyg'.
 
 
@@ -1114,17 +1104,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 (./_minted-biblioteca/3C73443E9E31210113290362D60F292856D282E624233EBAC87C446FF
-8CFE412.pygtex [34])
+8CFE412.pygtex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34])
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/690F4C20122DA612D8EE934DD938438656D282E624233EBAC87C446FF
-8CFE412.pygtex)
+8CFE412.pygtex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 3428) has occurred while \output is active []
+
+ [35])
 \openout5 = `biblioteca.pyg'.
 
 
 (./_minted-biblioteca/54BD06E5ED8E33D6B96496D5C25BFED456D282E624233EBAC87C446FF
-8CFE412.pygtex [35])
+8CFE412.pygtex)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \openout5 = `biblioteca.pyg'.
@@ -1150,18 +1149,18 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.17pt have occurred.
 
 Package rerunfilecheck Info: File `biblioteca.out' has not changed.
-(rerunfilecheck)             Checksum: 1C7A796A6018AF201B57D6B9CBF3C9B2;6746.
+(rerunfilecheck)             Checksum: 1B551287566E590CA456A3C0C291EF7D;6880.
 runsystem(rm biblioteca.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 19081 strings out of 480227
- 328497 string characters out of 5895371
- 1035917 words of memory out of 5000000
- 36420 multiletter control sequences out of 15000+600000
+ 19089 strings out of 480227
+ 329052 string characters out of 5895371
+ 998150 words of memory out of 5000000
+ 36424 multiletter control sequences out of 15000+600000
  489268 words of font info for 81 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 79i,10n,84p,3263b,827s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 79i,10n,84p,3263b,823s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/enzo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tctt0900.600p
 k> </home/enzo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600p
 k> </home/enzo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600p
@@ -1174,10 +1173,10 @@ k> </home/enzo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600p
 k> </home/enzo/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2488.600p
 k></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on biblioteca.pdf (37 pages, 347392 bytes).
+Output written on biblioteca.pdf (37 pages, 349703 bytes).
 PDF statistics:
- 925 PDF objects out of 1000 (max. 8388607)
- 500 compressed objects within 5 object streams
- 100 named destinations out of 1000 (max. 500000)
- 499 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 931 PDF objects out of 1000 (max. 8388607)
+ 505 compressed objects within 6 object streams
+ 101 named destinations out of 1000 (max. 500000)
+ 507 words of extra memory for PDF output out of 10000 (max. 10000000)
 

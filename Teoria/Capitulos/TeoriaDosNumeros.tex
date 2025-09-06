@@ -137,3 +137,22 @@ Given two \textbf{coprime} numbers $n, m$, the largest number that cannot be wri
     \item For each pair $(k, nm - n - m - k)$, for $k \geq 0$, exactly one can be written.
 \end{itemize}
 
+
+\subsection{Harmonic Lemma}
+
+This technique computes sums of the form $\sum_{i=1}^{n} f\left(\left\lfloor \frac{n}{i} \right\rfloor\right)$ in $O(\sqrt{n})$.
+
+The value of $\lfloor \frac{n}{i} \rfloor$ is constant over blocks. If we are at index $l$, the value $v = \lfloor \frac{n}{l} \rfloor$ remains constant up to index $r = \lfloor \frac{n}{v} \rfloor$. We can iterate through these blocks instead of individual indices.
+
+\begin{verbatim}
+long long sum = 0;
+for (int l = 1, r; l <= n; l = r + 1) {
+    int val = n / l;
+    r = n / val;
+    sum += (long long)(r - l + 1) * f(val);
+}
+\end{verbatim}
+
+\textbf{Generalization:} For sums like $\sum_{i=1}^{n} g(i) \cdot f(\lfloor \frac{n}{i} \rfloor)$, the contribution of a block $[l, r]$ is:
+$$ (G(r) - G(l-1)) \cdot f\left(\left\lfloor \frac{n}{l} \right\rfloor\right) $$
+where $G(k)$ is the prefix sum $\sum_{i=1}^k g(i)$, which must be efficiently computable.
